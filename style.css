@@ -1804,19 +1804,19 @@ footer{
   /* ---------- Hero ---------- */
 
 .hero{
-    padding-top:120px;
+    padding-top:115px;
 }
 
 .hero .tag{
     display:inline-flex;
     margin-top:0;
-    margin-bottom:30px;
+    margin-bottom:40px;
     position:relative;
     z-index:2;
 }
 
 .hero h1{
-    font-size:1.9rem;
+    font-size:1.5rem;
     line-height:1.12;
 }
 
