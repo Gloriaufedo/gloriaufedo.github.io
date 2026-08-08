@@ -463,7 +463,7 @@ color:white;
 ========================================== */
 
 .hero{
-    min-height:calc(110vh - 120px);
+    min-height:calc(125vh - 135px);
     display:flex;
     align-items:flex-start;
     padding:120px 5% 40px;
