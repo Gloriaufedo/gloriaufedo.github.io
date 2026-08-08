@@ -1076,7 +1076,7 @@ footer {
     /* Hero adjustments */
     .hero {
         min-height: auto;
-        padding-top: 105px;
+        padding-top: 130px;
         padding-bottom: 40px;
         align-items: center;
     }
@@ -1091,7 +1091,7 @@ footer {
 
 .hero-image {
         order: 1; /* Places picture first */
-        margin-bottom: 10px;
+        margin-bottom: 16px;
     }
 
     .hero-image img {
@@ -1212,7 +1212,7 @@ footer {
     }
 
     .hero {
-        padding-top: 95px;
+        padding-top: 125px;
         padding-bottom: 30px;
     }
 
