@@ -474,10 +474,10 @@ color:white;
 ========================================== */
 
 .hero{
-    min-height:calc(130vh - 135px);
+    min-height:calc(100vh - 110px);
     display:flex;
-    align-items:center;
-    padding:45px 5% 70px;
+    align-items:flex-start;
+    padding:120px 5% 40px;
 }
 
 .hero-container{
@@ -633,12 +633,6 @@ color:white;
     }
 
 }
-
-@media (min-width:1101px){
-
-    .hero-container{
-        transform:translateY(40px);
-    }
 
 }
 
