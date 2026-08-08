@@ -1080,18 +1080,32 @@ footer {
         padding-bottom: 40px;
         align-items: center;
     }
-
+   
     .hero-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 32px;
+        gap: 20px;
+    }
+
+.hero-image {
+        order: 1; /* Places picture first */
+        margin-bottom: 10px;
+    }
+
+    .hero-image img {
+        width: 160px; /* Reduced size so heading and buttons stay in view */
+        height: 160px;
+        object-fit: cover;
+        border-radius: 50%; /* Converts photo into a clean avatar on mobile */
+        border: 3px solid var(--accent, #00d2ff);
     }
 
     .hero-text {
-        max-width: 650px;
+        order: 2; /* Places text directly below photo */
     }
+}
 
     .hero .tag {
         display: inline-flex;
@@ -1202,6 +1216,11 @@ footer {
         padding-bottom: 30px;
     }
 
+   .hero-image img {
+        width: 130px;
+        height: 130px;
+    }
+   
     .hero .tag {
         display: inline-flex;
         margin-top: 0;
