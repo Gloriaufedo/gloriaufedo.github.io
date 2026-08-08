@@ -327,12 +327,17 @@ header {
 /* ==========================================
    HERO SECTION
 ========================================== */
-.hero {
-    min-height: calc(100vh - 105px);
-    display: flex;
-    align-items: center;
-    padding: 60px 5% 40px;
-}
+ .hero{
+
+    min-height:calc(125vh - 135px);
+
+    display:flex;
+
+    align-items:flex-start;
+
+    padding:120px 5% 40px;
+
+} 
 
 .hero-container {
     width: min(94%, 1320px);
