@@ -634,6 +634,14 @@ color:white;
 
 }
 
+@media (min-width:1101px){
+
+    .hero-container{
+        transform:translateY(40px);
+    }
+
+}
+
 /* ==========================================
    STATISTICS
 ========================================== */
@@ -1874,8 +1882,4 @@ footer{
         font-size:1.5rem;
     }
 
-}
-
-.hero h1 {
-    outline: 5px solid red;
 }
