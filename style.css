@@ -516,13 +516,13 @@ color:white;
     max-width:650px;
     color:var(--muted);
     font-size:1.1rem;
-    line-height:1.9;
+    line-height:1.8;
 }
 
 .hero-buttons{
     display:flex;
     gap:18px;
-    margin-top:36px;
+    margin-top:28px;
 }
 
 .primary-btn,
