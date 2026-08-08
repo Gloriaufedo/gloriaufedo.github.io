@@ -1794,7 +1794,7 @@ footer{
     }
 
     .navbar{
-        padding:0 15px;
+        padding:0 12px;
     }
 
     .logo{
@@ -1804,7 +1804,7 @@ footer{
   /* ---------- Hero ---------- */
 
 .hero{
-    padding-top:135px;
+    padding-top:150px;
 }
 
 .hero .tag{
