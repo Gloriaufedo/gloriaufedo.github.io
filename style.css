@@ -246,7 +246,7 @@ header{
 
     width:min(94%,1320px);
 
-    height:74px;
+    height:70px;
 
     margin:18px auto;
 
@@ -490,7 +490,7 @@ color:white;
 }
 
 .hero-text{
-    max-width:650px;
+    max-width:660px;
 }
 
 .tag{
