@@ -1,7 +1,6 @@
 /* ==========================================
-   GOOGLE FONT
+   GOOGLE FONT (Must remain at line 1)
 ========================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
 
 /* ==========================================
@@ -322,8 +321,6 @@ header{
     transform:rotate(180deg);
 }
 
-/* ================= CTA ================= */
-
 .hire-btn{
     padding:12px 24px;
     border-radius:12px;
@@ -343,19 +340,19 @@ header{
 ========================================== */
 
 .hero{
-    min-height:calc(100vh - 105px);
+    min-height:calc(100vh - 135px);
     display:flex;
     align-items:center;
-    padding:40px 5% 60px;
+    padding:45px 5% 70px;
 }
 
 .hero-container{
     width:min(92%,1280px);
     margin:auto;
     display:grid;
-    grid-template-columns:1.15fr 0.85fr;
+    grid-template-columns:1.15fr .85fr;
     align-items:center;
-    gap:60px;
+    gap:80px;
 }
 
 .hero-text{
@@ -379,14 +376,13 @@ header{
     font-size:clamp(2.8rem,5vw,4.3rem);
     line-height:1.08;
     margin-bottom:24px;
-    font-weight:700;
 }
 
 .hero p{
     max-width:650px;
     color:var(--muted);
     font-size:1.1rem;
-    line-height:1.8;
+    line-height:1.9;
 }
 
 .hero-buttons{
@@ -415,7 +411,6 @@ header{
 
 .secondary-btn{
     border:2px solid rgba(56,189,248,.35);
-    color:var(--text);
 }
 
 .secondary-btn:hover{
@@ -429,12 +424,11 @@ header{
     margin-top:28px;
     color:var(--muted);
     font-weight:500;
-    font-size:0.95rem;
 }
 
 .status-dot{
-    width:10px;
-    height:10px;
+    width:12px;
+    height:12px;
     border-radius:50%;
     background:#22C55E;
     animation:pulse 2s infinite;
@@ -447,15 +441,14 @@ header{
 }
 
 .social-links a{
-    width:50px;
-    height:50px;
+    width:52px;
+    height:52px;
     border-radius:50%;
     display:grid;
     place-items:center;
     background:rgba(255,255,255,.05);
     transition:.35s;
-    font-size:18px;
-    color:var(--text);
+    font-size:20px;
 }
 
 .social-links a:hover{
@@ -467,14 +460,13 @@ header{
 .hero-image{
     display:flex;
     justify-content:center;
-    align-items:center;
 }
 
 .hero-image img{
-    width:380px;
+    width:360px;
     aspect-ratio:1;
     object-fit:cover;
-    border-radius:28px;
+    border-radius:26px;
     border:4px solid rgba(56,189,248,.25);
     box-shadow:0 30px 60px rgba(0,0,0,.35);
     animation:floatImage 5s ease-in-out infinite;
@@ -485,7 +477,7 @@ header{
         transform:translateY(0);
     }
     50%{
-        transform:translateY(-12px);
+        transform:translateY(-15px);
     }
 }
 
@@ -494,7 +486,7 @@ header{
         box-shadow:0 0 0 0 rgba(34,197,94,.5);
     }
     70%{
-        box-shadow:0 0 0 10px rgba(34,197,94,0);
+        box-shadow:0 0 0 12px rgba(34,197,94,0);
     }
     100%{
         box-shadow:0 0 0 0 rgba(34,197,94,0);
@@ -723,6 +715,7 @@ header{
     object-fit:cover;
     object-position:top;
     transition:.45s;
+    display:block;
 }
 
 .project-card:hover img{
@@ -1000,12 +993,8 @@ footer{
    RESPONSIVE MEDIA QUERIES
 ========================================== */
 
-/* ---------- Large Tablets / Desktops ---------- */
-@media (max-width:1100px){
-    .hero{
-        padding-top:140px;
-    }
-
+/* ---------- Large Tablets / Laptops ---------- */
+@media (max-width:1024px){
     .hero-container{
         grid-template-columns:1fr;
         text-align:center;
@@ -1027,16 +1016,12 @@ footer{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .about-highlights{
-        grid-template-columns:1fr;
-    }
-
     .projects-grid{
         grid-template-columns:1fr;
     }
 }
 
-/* ---------- Mobile Navigation ---------- */
+/* ---------- Mobile Navigation Layout ---------- */
 @media (max-width:900px){
     .menu-toggle{
         display:grid;
@@ -1078,7 +1063,7 @@ footer{
     }
 }
 
-/* ---------- Tablets ---------- */
+/* ---------- Standard Tablets ---------- */
 @media (max-width:768px){
     section{
         padding:90px 8%;
@@ -1101,10 +1086,10 @@ footer{
         font-size:2.2rem;
     }
 
+    /* Hero Responsive Overrides */
     .hero{
         min-height:auto;
-        padding-top:160px;
-        padding-bottom:50px;
+        padding:100px 6% 60px;
     }
 
     .hero-container{
@@ -1112,48 +1097,66 @@ footer{
         flex-direction:column;
         align-items:center;
         text-align:center;
-        gap:24px;
-    }
-
-    .hero-image{
-        order:1;
-        margin-top:10px;
-        margin-bottom:16px;
-    }
-
-    .hero-image img{
-        width:160px;
-        height:160px;
-        border-radius:50%;
+        gap:40px;
     }
 
     .hero-text{
-        order:2;
+        max-width:650px;
     }
 
     .hero .tag{
-        display:inline-flex;
-        margin-top:0;
-        margin-bottom:16px;
+        display:inline-block;
+        margin-top:10px;
+        margin-bottom:24px;
+        position:relative;
+        z-index:2;
     }
 
     .hero h1{
-        font-size:2.6rem;
-        line-height:1.2;
+        font-size:3.3rem;
+        line-height:1.1;
+        max-width:700px;
+        margin:0 auto;
     }
 
     .hero p{
-        font-size:1rem;
-        line-height:1.75;
-        margin:20px auto;
+        font-size:1.05rem;
+        line-height:1.8;
+        max-width:620px;
+        margin:28px auto;
     }
 
     .hero-buttons{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:18px;
+    }
+
+    .hero-buttons a{
+        width:auto;
+        min-width:220px;
+    }
+
+    .hero-image{
+        order:2;
+    }
+
+    .social-links,
+    .availability{
         justify-content:center;
     }
 
+    /* Stats */
+    .stats{
+        grid-template-columns:1fr;
+        gap:24px;
+    }
+
+    /* Skills */
     .skills-grid{
-        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
         gap:24px;
     }
 
@@ -1161,8 +1164,15 @@ footer{
         padding:36px 28px;
     }
 
+    /* Projects */
+    .projects-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
     .project-card img{
         height:240px;
+        object-fit:cover;
     }
 
     .project-links{
@@ -1171,7 +1181,11 @@ footer{
         gap:15px;
     }
 
+    /* Contact */
     .contact-buttons{
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
         gap:16px;
     }
 
@@ -1180,6 +1194,7 @@ footer{
         min-width:220px;
     }
 
+    /* Timeline */
     .timeline{
         padding-left:15px;
     }
@@ -1198,10 +1213,10 @@ footer{
     }
 }
 
-/* ---------- Small Mobile ---------- */
+/* ---------- Mobile Phones ---------- */
 @media (max-width:500px){
     section{
-        padding:70px 5%;
+        padding:70px 7%;
     }
 
     .navbar{
@@ -1213,29 +1228,24 @@ footer{
     }
 
     .hero{
-        padding-top:150px;
-        padding-bottom:30px;
-    }
-
-    .hero-image img{
-        width:130px;
-        height:130px;
+        padding-top:95px;
     }
 
     .hero .tag{
-        font-size:0.78rem;
-        padding:6px 14px;
-        margin-bottom:12px;
+        font-size:0.82rem;
+        line-height:1.4;
+        margin-top:0;
+        margin-bottom:20px;
     }
 
     .hero h1{
-        font-size:1.9rem;
-        line-height:1.25;
+        font-size:2.3rem;
+        line-height:1.15;
     }
 
     .hero p{
-        font-size:0.92rem;
-        line-height:1.6;
+        font-size:1rem;
+        line-height:1.75;
     }
 
     .hero-buttons{
@@ -1245,10 +1255,6 @@ footer{
 
     .hero-buttons a{
         width:100%;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
     }
 
     .skill-card{
