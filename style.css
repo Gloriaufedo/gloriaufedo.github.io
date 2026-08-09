@@ -1052,31 +1052,11 @@ footer {
 
 /* ---------- Standard Tablets (max-width: 768px) ---------- */
 @media (max-width: 768px) {
-    section {
-        padding: 90px 8%;
-    }
+    /* ... rest of your code above ... */
 
-    .navbar {
-        height: 70px;
-        padding: 0 24px;
-    }
-
-    .logo {
-        font-size: 1.45rem;
-    }
-
-    .section-title {
-        margin-bottom: 50px;
-    }
-
-    .section-title h2 {
-        font-size: 2.2rem;
-    }
-
-    /* Hero adjustments */
     .hero {
         min-height: auto;
-        padding-top: 130px;
+        padding-top: 170px; /* Increased from 130px to clear the header completely */
         padding-bottom: 40px;
         align-items: center;
     }
@@ -1090,7 +1070,8 @@ footer {
     }
 
     .hero-image {
-        order: 1; /* Keeps photo above text */
+        order: 1; 
+        margin-top: 15px; /* Adds extra push directly above the photo */
         margin-bottom: 16px;
     }
 
@@ -1206,8 +1187,8 @@ footer {
         font-size: 1.2rem;
     }
 
-    .hero {
-        padding-top: 125px;
+.hero {
+        padding-top: 160px; /* Increased from 125px */
         padding-bottom: 30px;
     }
 
