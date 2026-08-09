@@ -473,11 +473,11 @@ color:white;
    HERO
 ========================================== */
 
-.hero{
-    min-height:calc(130vh - 135px);
-    display:flex;
-    align-items:center;
-    padding:45px 5% 70px;
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 20px 5% 40px;
 }
 
 .hero-container{
