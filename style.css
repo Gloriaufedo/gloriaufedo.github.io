@@ -1080,7 +1080,7 @@ footer {
         padding-bottom: 40px;
         align-items: center;
     }
-   
+    
     .hero-container {
         display: flex;
         flex-direction: column;
@@ -1089,23 +1089,22 @@ footer {
         gap: 20px;
     }
 
-.hero-image {
-        order: 1; /* Places picture first */
+    .hero-image {
+        order: 1; /* Keeps photo above text */
         margin-bottom: 16px;
     }
 
     .hero-image img {
-        width: 160px; /* Reduced size so heading and buttons stay in view */
+        width: 160px;
         height: 160px;
         object-fit: cover;
-        border-radius: 50%; /* Converts photo into a clean avatar on mobile */
+        border-radius: 50%;
         border: 3px solid var(--accent, #00d2ff);
     }
 
     .hero-text {
         order: 2; /* Places text directly below photo */
     }
-}
 
     .hero .tag {
         display: inline-flex;
@@ -1140,10 +1139,6 @@ footer {
     .hero-buttons a {
         width: auto;
         min-width: 220px;
-    }
-
-    .hero-image {
-        order: 2;
     }
 
     /* Skills grid */
@@ -1216,11 +1211,11 @@ footer {
         padding-bottom: 30px;
     }
 
-   .hero-image img {
+    .hero-image img {
         width: 130px;
         height: 130px;
     }
-   
+    
     .hero .tag {
         display: inline-flex;
         margin-top: 0;
