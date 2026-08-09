@@ -491,6 +491,12 @@ color:white;
 
 .hero-text{
     max-width:650px;
+    grid-column: 1;
+}
+
+.hero-image {
+    grid-column: 2;
+}
 }
 
 .tag{
