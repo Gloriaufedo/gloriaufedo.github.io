@@ -473,11 +473,11 @@ color:white;
    HERO
 ========================================== */
 
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 20px 5% 40px;
+.hero{
+    min-height:calc(130vh - 135px);
+    display:flex;
+    align-items:center;
+    padding:45px 5% 70px;
 }
 
 .hero-container{
@@ -486,12 +486,11 @@ color:white;
     display:grid;
     grid-template-columns:1.15fr .85fr;
     align-items:center;
-    gap:60px;
+    gap:80px;
 }
 
-.hero-text {
-    max-width: 650px;
-    grid-column: 1;
+.hero-text{
+    max-width:650px;
 }
 
 .tag{
@@ -592,10 +591,9 @@ color:white;
     transform:translateY(-5px);
 }
 
-.hero-image {
-    grid-column: 2;
-    display: flex;
-    justify-content: center;
+.hero-image{
+    display:flex;
+    justify-content:center;
 }
 
 .hero-image img{
