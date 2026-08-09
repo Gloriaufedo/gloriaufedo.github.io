@@ -971,17 +971,16 @@ footer {
     color: var(--muted);
     font-size: 0.9rem;
 }
-
-/* ==========================================
-   RESPONSIVE MEDIA QUERIES
-========================================== */
-
 /* ---------- Large Tablets / Desktops (max-width: 1100px) ---------- */
 @media (max-width: 1100px) {
+    .hero {
+        padding-top: 140px; /* Gives navbar clearance as soon as grid collapses */
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 60px;
+        gap: 40px;
     }
 
     .hero-text {
@@ -1052,11 +1051,9 @@ footer {
 
 /* ---------- Standard Tablets (max-width: 768px) ---------- */
 @media (max-width: 768px) {
-    /* ... rest of your code above ... */
-
     .hero {
         min-height: auto;
-        padding-top: 170px; /* Increased from 130px to clear the header completely */
+        padding-top: 160px; /* Keeps clean distance below sticky header */
         padding-bottom: 40px;
         align-items: center;
     }
@@ -1071,7 +1068,7 @@ footer {
 
     .hero-image {
         order: 1; 
-        margin-top: 15px; /* Adds extra push directly above the photo */
+        margin-top: 10px;
         margin-bottom: 16px;
     }
 
@@ -1084,7 +1081,7 @@ footer {
     }
 
     .hero-text {
-        order: 2; /* Places text directly below photo */
+        order: 2;
     }
 
     .hero .tag {
@@ -1187,8 +1184,8 @@ footer {
         font-size: 1.2rem;
     }
 
-.hero {
-        padding-top: 160px; /* Increased from 125px */
+    .hero {
+        padding-top: 150px;
         padding-bottom: 30px;
     }
 
