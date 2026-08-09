@@ -473,7 +473,7 @@ color:white;
    HERO
 ========================================== */
 
-.hero{
+ .hero{
 
     min-height:calc(150vh - 155px);
 
@@ -483,7 +483,7 @@ color:white;
 
     padding:45px 5% 70px;
 
-} 
+}
 
 
 .hero-container{
@@ -500,7 +500,7 @@ color:white;
 
     gap:80px;
 
-}
+} 
 
 
 .hero-text{
