@@ -477,11 +477,16 @@ color:white;
 
 
 .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 20px 5% 40px;
-}
+   
+   min-height: 100vh;
+   
+   display: flex;
+   
+   align-items: center;
+   
+   padding: 20px 5% 40px;
+   
+   } 
 
 
 .hero-container{
