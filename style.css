@@ -473,16 +473,11 @@ color:white;
    HERO
 ========================================== */
 
-  .hero{
-
-    min-height:calc(150vh - 155px);
-
-    display:flex;
-
-    align-items:center;
-
-    padding:45px 5% 70px;
-
+ .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 20px 5% 40px;
 }
 
 
@@ -502,24 +497,17 @@ color:white;
 
 }
 
-
-.hero-text{
-
-    max-width:650px;
-
+.hero-text {
+    max-width: 650px;
     grid-column: 1;
-
 }
 
 
 .hero-image {
-
     grid-column: 2;
-
+    display: flex;
+    justify-content: center;
 }
-
-}
-
 
 .tag{
 
