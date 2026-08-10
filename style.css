@@ -1798,53 +1798,60 @@ footer{
    SMALL PHONES
 ========================================== */
 
-@media (max-width:500px){
-
-    section{
-        padding:70px 7%;
-    }
-
-    .navbar{
-        padding:0 18px;
-    }
-
-    .logo{
-        font-size:1.2rem;
-    }
-
+@media (max-width: 500px) {
 
     /* ---------- Hero ---------- */
 
-    .hero{
-        padding-top:95px;
+    .hero {
+        padding-top: 90px;
     }
 
-    .hero .tag{
-        font-size:0.82rem;
-        line-height:1.4;
-        margin-top:0;
-        margin-bottom:20px;
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
     }
 
-    .hero h1{
-        font-size:2.3rem;
-        line-height:1.15;
+    .hero-image {
+        order: -1; /* Move image to the top on small phones only */
     }
 
-    .hero p{
-        font-size:1rem;
-        line-height:1.75;
+    .hero-image img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%; /* Circle shape matching screenshot */
+        border: 3px solid rgba(56, 189, 248, 0.5);
     }
 
-    .hero-buttons{
-        flex-direction:column;
-        gap:14px;
+    .hero .tag {
+        font-size: 0.82rem;
+        line-height: 1.4;
+        margin-top: 10px;
+        margin-bottom: 20px;
     }
 
-    .hero-buttons a{
-        width:100%;
+    .hero h1 {
+        font-size: 2.3rem;
+        line-height: 1.15;
     }
 
+    .hero p {
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+    }
+
+}
 
     /* ---------- Skills ---------- */
 
