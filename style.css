@@ -474,10 +474,10 @@ color:white;
 ========================================== */
 
 .hero {
-    min-height(155vh - 165spx);
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 100px 5% 40px;
+    padding: 120px 5% 40px;
 }
 
 .hero-container {
@@ -502,6 +502,7 @@ color:white;
     color: var(--primary);
     font-size: .85rem;
     font-weight: 600;
+    margin-top: 25px; /* Pushes tag down below fixed navbar */
     margin-bottom: 22px;
 }
 
