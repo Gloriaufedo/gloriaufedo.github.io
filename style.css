@@ -474,10 +474,10 @@ color:white;
 ========================================== */
 
 .hero {
-    min-height: calc(100vh - 80px); /* 80px accounts for navbar height */
+    min-height: calc(100vh - 74px); /* 80px accounts for navbar height */
     display: flex;
     align-items: flex-start; /* Keeps content at the top rather than centering under navbar */
-    padding: 20px 5% 40px;   /* Clean spacing beneath navbar */
+    padding: 30px 5% 40px;   /* Clean spacing beneath navbar */
     margin-top: 80px;        /* Pushes section down directly under fixed navbar */
 }
 
