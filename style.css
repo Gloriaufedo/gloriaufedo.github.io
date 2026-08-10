@@ -482,8 +482,6 @@ body.light-mode .navbar {
 
 /* =========================================================
    HERO
-   IMPORTANT:
-   Existing landing-page structure preserved.
 ========================================================= */
 
 .hero {
@@ -2253,61 +2251,5 @@ footer {
 
     .contact-buttons a {
         width: 100%;
-    }
-
-
-    /* ---------------------------------------------
-       SECTION TITLES
-    --------------------------------------------- */
-
-    .section-title h2 {
-        font-size: 1.9rem;
-    }
-
-    .section-title p {
-        font-size: 0.95rem;
-    }
-
-
-    /* ---------------------------------------------
-       FOOTER
-    --------------------------------------------- */
-
-    .footer-content h3 {
-        font-size: 1.5rem;
-    }
-
-    footer {
-        padding: 60px 6% 30px;
-    }
-}
-
-
-/* =========================================================
-   EXTRA SMALL PHONES
-========================================================= */
-
-@media (max-width: 400px) {
-
-    .navbar {
-        width: 92%;
-
-        padding: 0 18px;
-    }
-
-    .logo {
-        font-size: 1.3rem;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .stat-card h2 {
-        font-size: 2.2rem;
-    }
-
-    .section-title h2 {
-        font-size: 1.75rem;
     }
 }
