@@ -498,7 +498,7 @@ color:white;
 }
 
 .hero-text {
-    max-width: 670px;
+    max-width: 690px;
     grid-column: 1;
 }
 
@@ -547,7 +547,7 @@ color:white;
 
 .hero p{
 
-    max-width:670px;
+    max-width:690px;
 
     color:var(--muted);
 
