@@ -474,7 +474,7 @@ color:white;
 ========================================== */
 
 .hero {
-    min-height(140vh - 150spx);
+    min-height(155vh - 165spx);
     display: flex;
     align-items: center;
     padding: 100px 5% 40px;
