@@ -859,8 +859,8 @@ header{
     content: "";
     position: absolute;
     left: 24px;
-    top: 34px; /* Aligned with the center of the first item's dot */
-    bottom: 34px; /* Stops neatly at the center of the last item's dot */
+    top: 34px;    /* Aligns top of line precisely with first dot center */
+    bottom: 34px; /* Stops line neatly at last dot center */
     width: 3px;
     background: linear-gradient(
         to bottom,
@@ -896,7 +896,7 @@ header{
     background: var(--primary);
     border: 5px solid var(--bg);
     box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.20);
-    z-index: 2; /* Ensures dot sits cleanly on top of the line */
+    z-index: 2; /* Sits cleanly above the connecting line */
 }
 
 .timeline-item:hover {
