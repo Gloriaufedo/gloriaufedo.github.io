@@ -841,9 +841,9 @@ header{
     }
 }
 
-/* ==========================================
-   TIMELINE
-========================================== */
+/* =========================================================
+   EXPERIENCE / JOURNEY
+========================================================= */
 
 #timeline {
     padding-top: 110px;
@@ -851,33 +851,56 @@ header{
 
 .timeline {
     position: relative;
+
     max-width: 980px;
+
     margin: 0 auto;
+
+    padding: 0;
 }
 
 .timeline::before {
     content: "";
+
     position: absolute;
+
     left: 24px;
-    top: 34px;    /* Aligns top of line precisely with first dot center */
-    bottom: 34px; /* Stops line neatly at last dot center */
+
+    top: 0;
+
+    bottom: 0;
+
     width: 3px;
+
     background: linear-gradient(
         to bottom,
         var(--primary),
         #2563EB
     );
+
     border-radius: 999px;
 }
 
 .timeline-item {
     position: relative;
+
     margin-left: 70px;
+
     margin-bottom: 35px;
+
     padding: 30px;
+
     border-radius: 22px;
-    background: rgba(255, 255, 255, 0.05);
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.05
+    );
+
     border: 1px solid var(--border);
+
     transition: 0.35s ease;
 }
 
@@ -887,39 +910,67 @@ header{
 
 .timeline-item::before {
     content: "";
+
     position: absolute;
+
     left: -58px;
+
     top: 34px;
+
     width: 18px;
+
     height: 18px;
+
     border-radius: 50%;
+
     background: var(--primary);
+
     border: 5px solid var(--bg);
-    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.20);
-    z-index: 2; /* Sits cleanly above the connecting line */
+
+    box-shadow:
+        0 0 0 4px rgba(
+            56,
+            189,
+            248,
+            0.20
+        );
 }
 
 .timeline-item:hover {
     transform: translateX(10px);
+
     border-color: var(--primary);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+
+    box-shadow:
+        0 18px 45px rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
 }
 
 .timeline-item h3 {
     font-family: "Poppins", sans-serif;
+
     font-size: 1.25rem;
-    margin-bottom: 8px;
+
+    margin-bottom: 14px;
 }
 
 .timeline-item p {
     color: var(--muted);
+
     line-height: 1.8;
 }
 
 .timeline-item span {
     display: inline-block;
+
     margin-top: 18px;
+
     color: var(--primary);
+
     font-weight: 700;
 }
 
