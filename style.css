@@ -478,7 +478,7 @@ color:white;
     display: flex;
     align-items: flex-start; /* Keeps content at the top rather than centering under navbar */
     padding: 30px 5% 40px;   /* Clean spacing beneath navbar */
-    margin-top: 80px;        /* Pushes section down directly under fixed navbar */
+    margin-top: 74px;        /* Pushes section down directly under fixed navbar */
 }
 
 .hero-container {
