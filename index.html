@@ -1,828 +1,723 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-    <title>Gloria Austin | Business Intelligence & Data Analyst</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="Gloria Austin is a Business Intelligence and Data Analyst working across SQL, Power BI, Python, risk analytics, and computational research.">
+  <title>Gloria Austin | Business Intelligence & Data Analyst</title>
 
-    <meta name="author" content="Gloria Austin">
+<meta
+name="description"
+content="Gloria Austin is a Business Intelligence and Data Analyst working across SQL, Power BI, data modeling, risk analytics, and computational research."
 
-    <meta property="og:title" content="Gloria Austin | Business Intelligence & Data Analyst">
-    <meta property="og:description"
-          content="Business intelligence, data analytics, risk analysis, and computational research portfolio.">
-    <meta property="og:image" content="assets/images/profile.jpg">
-    <meta property="og:type" content="website">
+>
 
-    <link rel="stylesheet" href="style.css">
+  <meta name="author" content="Gloria Austin">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- Fonts -->
 
-    <!-- Favicons -->
-    <link rel="icon" href="assets/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Icons -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <!-- Main stylesheet -->
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body data-page="home">
 
-<!-- ================= NAVIGATION ================= -->
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-<header>
-    <nav class="navbar">
+  <header class="site-header">
+    <div class="container-wide navbar">
 
-        <a href="index.html" class="logo">
-            <span>Gloria</span> Austin
-        </a>
+```
+  <a href="index.html" class="logo" aria-label="Gloria Austin Home">
+    <span class="logo-mark">GA</span>
+    <span class="logo-text">Gloria Austin</span>
+  </a>
 
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="experience.html">Experience</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+  <nav class="nav-links" aria-label="Main navigation">
+    <a href="index.html" data-page-link="home">Home</a>
+    <a href="projects.html" data-page-link="projects">Projects</a>
+    <a href="experience.html" data-page-link="experience">Experience</a>
+    <a href="research.html" data-page-link="research">Research</a>
+    <a href="about.html" data-page-link="about">About</a>
+    <a href="contact.html" data-page-link="contact">Contact</a>
+  </nav>
 
-        <div class="nav-actions">
+  <div class="nav-actions">
 
-            <button id="theme-toggle" aria-label="Toggle Theme">
-                <i class="fa-solid fa-moon"></i>
-            </button>
+    <button
+      class="theme-toggle"
+      type="button"
+      aria-label="Toggle dark and light mode"
+      title="Toggle theme"
+    >
+      <i class="fa-solid fa-moon"></i>
+    </button>
 
-            <button class="menu-toggle" aria-label="Open Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+    <a href="contact.html" class="btn btn-primary nav-cta">
+      Let's Talk
+    </a>
 
-        </div>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-    </nav>
-</header>
+  </div>
+
+</div>
 
 <div class="menu-overlay"></div>
-
-
-<!-- ================= HERO ================= -->
-
-<main>
-
-<section class="hero">
-
-    <div class="hero-container">
-
-        <div class="hero-text">
-
-            <span class="tag">
-                Business Intelligence • Data Analytics • Risk & Research
-            </span>
-
-            <h1>
-                I turn complex data into decisions people can act on.
-            </h1>
-
-            <p>
-                I am a Business Intelligence and Data Analyst working across
-                SQL, Power BI, Python, data modeling, and statistical analysis.
-                I build analytical solutions that move from messy data and
-                business questions to clear findings, reporting, and recommendations.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="projects.html" class="primary-btn">
-                    Explore My Work
-                </a>
-
-                <a href="assets/resume/Gloria_Austin_Resume.pdf"
-                   target="_blank"
-                   class="secondary-btn">
-                    Download Résumé
-                </a>
-
-            </div>
-
-            <div class="availability">
-                <span class="status-dot"></span>
-                Open to Business Intelligence & Data Analytics Opportunities
-            </div>
-
-            <div class="social-links">
-
-                <a href="https://github.com/Gloriaufedo"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-
-                <a href="https://www.linkedin.com/in/gloria-austin-143334292"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-
-                <a href="mailto:gloriaaustin002@gmail.com"
-                   aria-label="Email">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="hero-image">
-
-            <img
-                src="assets/images/profile.jpg"
-                alt="Gloria Austin - Business Intelligence and Data Analyst">
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= EVIDENCE ================= -->
-
-<section class="stats">
-
-    <div class="stat-card">
-
-        <h2>15.7M+</h2>
-
-        <p>
-            Records analyzed in large-scale climate data work
-        </p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <h2>$1.27M</h2>
-
-        <p>
-            Revenue analyzed in a global sales case study
-        </p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <h2>203K+</h2>
-
-        <p>
-            Bitcoin transactions investigated for structural risk patterns
-        </p>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <h2>7</h2>
-
-        <p>
-            Dimensions modeled in a retail banking data warehouse
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ================= WHAT I DO ================= -->
-
-<section class="section">
-
-    <div class="section-title">
-
-        <span class="section-tag">
-            What I Do
-        </span>
-
-        <h2>
-            From business questions to analytical evidence.
-        </h2>
-
-        <p>
-            My projects cover more than dashboard development. I work across
-            the analytical process — understanding the problem, structuring
-            data, analyzing it, and communicating what the results mean.
-        </p>
-
-    </div>
-
-
-    <div class="skills-grid">
-
-
-        <div class="skill-card">
-
-            <i class="fa-solid fa-database"></i>
-
-            <h3>
-                Business Intelligence
-            </h3>
-
-            <p>
-                SQL analysis, Power BI dashboards, DAX, KPI reporting,
-                performance analysis, and executive reporting.
-            </p>
-
-        </div>
-
-
-        <div class="skill-card">
-
-            <i class="fa-solid fa-diagram-project"></i>
-
-            <h3>
-                Data Modeling
-            </h3>
-
-            <p>
-                Relational analysis, dimensional modeling, fact and dimension
-                tables, surrogate keys, and slowly changing dimensions.
-            </p>
-
-        </div>
-
-
-        <div class="skill-card">
-
-            <i class="fa-solid fa-magnifying-glass-chart"></i>
-
-            <h3>
-                Risk & Investigative Analytics
-            </h3>
-
-            <p>
-                Python-based graph analysis, transaction risk scoring,
-                fraud-pattern detection, and compliance reporting.
-            </p>
-
-        </div>
-
-
-        <div class="skill-card">
-
-            <i class="fa-solid fa-flask"></i>
-
-            <h3>
-                Computational Research
-            </h3>
-
-            <p>
-                Transcriptomic analysis, survival analysis, statistical
-                modeling, enrichment analysis, and single-cell workflows.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FEATURED WORK ================= -->
-
-<section class="section">
-
-    <div class="section-title">
-
-        <span class="section-tag">
-            Selected Work
-        </span>
-
-        <h2>
-            Projects that show how I think with data.
-        </h2>
-
-        <p>
-            A selection of work across business intelligence, financial risk,
-            data modeling, and research analytics.
-        </p>
-
-    </div>
-
-
-    <div class="projects-grid">
-
-
-        <!-- ================= NORTHWIND ================= -->
-
-        <article class="project-card">
-
-            <img
-                src="assets/projects/northwind.png"
-                alt="Northwind Traders Global Sales and Operations Dashboard">
-
-            <span class="project-category">
-                Business Intelligence
-            </span>
-
-            <h3>
-                Northwind Traders — Global Sales & Operations Analysis
-            </h3>
-
-            <p>
-                Built an interactive Power BI analysis of sales, products,
-                employees, and shipping operations across a relational
-                business dataset.
-            </p>
-
-            <div class="project-evidence">
-
-                <span>$1.27M revenue</span>
-
-                <span>830 orders</span>
-
-                <span>14.61% from discontinued products</span>
-
-            </div>
-
-            <div class="project-tags">
-
-                <span>Power BI</span>
-                <span>DAX</span>
-                <span>Data Modeling</span>
-
-            </div>
-
-            <div class="project-links">
-
-                <a href="projects/northwind.html"
-                   class="case-study">
-
-                    View Case Study
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- ================= BITCOIN ================= -->
-
-        <article class="project-card">
-
-            <img
-                src="assets/projects/bitcoin-fraud.png"
-                alt="Bitcoin Transaction Risk and Compliance Analysis">
-
-            <span class="project-category">
-                Risk & Investigative Analytics
-            </span>
-
-            <h3>
-                Bitcoin Transaction Risk & Compliance Analysis
-            </h3>
-
-            <p>
-                Investigated the Elliptic Bitcoin Transaction Dataset using
-                graph-based analysis to identify structurally suspicious
-                transaction behavior and produce compliance recommendations.
-            </p>
-
-            <div class="project-evidence">
-
-                <span>203K+ transactions</span>
-
-                <span>5,459-node forensic subgraph</span>
-
-                <span>11 layering flags</span>
-
-            </div>
-
-            <div class="project-tags">
-
-                <span>Python</span>
-                <span>Graph Analytics</span>
-                <span>Fraud Detection</span>
-
-            </div>
-
-            <div class="project-links">
-
-                <a href="projects/bitcoin-risk.html"
-                   class="case-study">
-
-                    View Case Study
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- ================= CLIMATE ================= -->
-
-        <article class="project-card">
-
-            <img
-                src="assets/projects/climate.png"
-                alt="Climate Change Sentiment Intelligence Dashboard">
-
-            <span class="project-category">
-                Business Intelligence
-            </span>
-
-            <h3>
-                Climate Change Sentiment Intelligence
-            </h3>
-
-            <p>
-                Analyzed large-scale social media data to examine climate
-                sentiment, stance, topics, aggression, and behavioral patterns
-                using PostgreSQL and Power BI.
-            </p>
-
-            <div class="project-evidence">
-
-                <span>15.7M+ tweets</span>
-
-                <span>6.25M tweets in 2018</span>
-
-                <span>71.5% believers</span>
-
-            </div>
-
-            <div class="project-tags">
-
-                <span>PostgreSQL</span>
-                <span>SQL</span>
-                <span>Power BI</span>
-
-            </div>
-
-            <div class="project-links">
-
-                <a href="projects/climate-change.html"
-                   class="case-study">
-
-                    View Case Study
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- ================= PALLADIUM ================= -->
-
-        <article class="project-card">
-
-            <img
-                src="assets/projects/palladium.png"
-                alt="Palladium Bank Retail Banking Data Warehouse">
-
-            <span class="project-category">
-                Data Modeling
-            </span>
-
-            <h3>
-                Palladium Bank — Retail Banking Data Warehouse
-            </h3>
-
-            <p>
-                Designed a transaction-grain dimensional model for retail
-                banking analytics, including customer history and structured
-                reporting dimensions.
-            </p>
-
-            <div class="project-evidence">
-
-                <span>7 dimensions</span>
-
-                <span>SCD Type 2 customer history</span>
-
-                <span>Transaction-grain fact</span>
-
-            </div>
-
-            <div class="project-tags">
-
-                <span>SQL</span>
-                <span>MySQL</span>
-                <span>Dimensional Modeling</span>
-
-            </div>
-
-            <div class="project-links">
-
-                <a href="projects/palladium-bank.html"
-                   class="case-study">
-
-                    View Case Study
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-            </div>
-
-        </article>
-
-    </div>
-
-
-    <div class="section-cta">
-
-        <a href="projects.html"
-           class="primary-btn">
-
-            View All Projects
-
-            <i class="fa-solid fa-arrow-right"></i>
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- ================= EXPERIENCE PREVIEW ================= -->
-
-<section class="section section-alt">
-
-    <div class="section-title">
-
-        <span class="section-tag">
-            Experience
-        </span>
-
-        <h2>
-            Professional analytics experience.
-        </h2>
-
-    </div>
-
-
-    <div class="experience-preview">
-
-        <div>
-
-            <span class="experience-date">
-                2024 – 2026
-            </span>
-
-            <h3>
-                Data & Operations Analyst
-            </h3>
-
-            <p class="experience-company">
-                Dylte Beauty & Wellness • Lagos
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <p>
-                Worked across sales, customer, marketing, and operational
-                data, building KPI reporting and Power BI dashboards while
-                using analysis to identify performance trends and workflow
-                bottlenecks.
-            </p>
-
-            <a href="experience.html"
-               class="text-link">
-
-                View Experience
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= RESEARCH PREVIEW ================= -->
-
-<section class="section">
-
-    <div class="section-title">
-
-        <span class="section-tag">
-            Research
-        </span>
-
-        <h2>
-            Computational analysis grounded in a scientific background.
-        </h2>
-
-        <p>
-            My research portfolio combines a First Class Biochemistry
-            background with computational analysis of molecular and clinical
-            datasets.
-        </p>
-
-    </div>
-
-
-    <div class="research-preview">
-
-
-        <div class="research-card">
-
-            <i class="fa-solid fa-dna"></i>
-
-            <h3>
-                Computational Genomics & Bioinformatics
-            </h3>
-
-            <p>
-                RNA-seq, TCGA survival analysis, immune microenvironment
-                analysis, and single-cell RNA-seq workflows.
-            </p>
-
-            <a href="research.html"
-               class="text-link">
-
-                Explore Research
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-        </div>
-
-
-        <div class="research-card">
-
-            <i class="fa-solid fa-file-lines"></i>
-
-            <h3>
-                Published Research
-            </h3>
-
-            <p>
-                Co-authored work on Puerarin and NRF2-related protection
-                against oxidative damage, presented in IEEE Conference
-                Proceedings.
-            </p>
-
-            <a href="research.html#publication"
-               class="text-link">
-
-                View Publication
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FINAL CTA ================= -->
-
-<section class="section contact-cta">
-
-    <div class="section-title">
-
-        <span class="section-tag">
-            Let's Connect
-        </span>
-
-        <h2>
-            Looking for someone who can do more than build the dashboard?
-        </h2>
-
-        <p>
-            I'm open to Business Intelligence, Data Analytics, Reporting,
-            Risk Analytics, and research opportunities where rigorous analysis
-            can support better decisions.
-        </p>
-
-    </div>
-
-
-    <div class="hero-buttons">
-
-        <a href="contact.html"
-           class="primary-btn">
-
-            Get In Touch
-
-        </a>
-
-        <a href="projects.html"
-           class="secondary-btn">
-
-            Explore Projects
-
-        </a>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <div class="footer-content">
-
-        <h3>
-            Gloria Austin
-        </h3>
-
-        <p>
-            Business Intelligence • Data Analytics • Risk & Research
-        </p>
-
-
-        <div class="footer-social">
-
-            <a href="https://github.com/Gloriaufedo"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="GitHub">
-
-                <i class="fab fa-github"></i>
-
-            </a>
-
-
-            <a href="https://www.linkedin.com/in/gloria-austin-143334292"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="LinkedIn">
-
-                <i class="fab fa-linkedin"></i>
-
-            </a>
-
-
-            <a href="mailto:gloriaaustin002@gmail.com"
-               aria-label="Email">
-
-                <i class="fa-solid fa-envelope"></i>
-
-            </a>
-
-        </div>
-
-
-        <p class="availability-text">
-
-            Open to full-time, internship, graduate, and remote opportunities
-            across Business Intelligence, Data Analytics, Reporting, and related fields.
-
-        </p>
-
-
-        <p class="copyright">
-            © 2026 Gloria Austin. All Rights Reserved.
-        </p>
-
-
-        <p class="copyright">
-            Designed & Developed with HTML, CSS & JavaScript.
-        </p>
-
-    </div>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-</body>
-</html>
 ```
+
+  </header>
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
+```
+<section class="page-hero home-hero section">
+  <div class="container">
+
+    <div class="hero-content reveal">
+
+      <span class="section-label">
+        Business Intelligence • Data Analytics • Risk & Research
+      </span>
+
+      <h1>
+        I turn complex data into
+        <span class="text-accent">decisions people can act on.</span>
+      </h1>
+
+      <p class="hero-description">
+        I’m a Business Intelligence and Data Analyst who works across
+        SQL, Power BI, data modeling, Python, and statistical analysis.
+        I focus on turning messy data into structured analysis,
+        meaningful findings, and reporting that answers real business
+        questions.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="projects.html" class="btn btn-primary">
+          Explore My Work
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a href="about.html" class="btn btn-secondary">
+          More About Me
+        </a>
+
+      </div>
+
+      <div class="hero-links">
+
+        <a
+          href="https://github.com/gloriaufedo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fa-brands fa-github"></i>
+          GitHub
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/gloria-austin-143334292/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fa-brands fa-linkedin"></i>
+          LinkedIn
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     EVIDENCE
+========================== -->
+<section class="section section-sm">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <span class="section-label">Selected Evidence</span>
+
+      <h2>
+        The scale and range of my work
+      </h2>
+
+      <p>
+        A few examples of the datasets, analytical problems, and
+        structures I have worked with.
+      </p>
+    </div>
+
+
+    <div class="stat-grid">
+
+      <article class="stat-card reveal">
+        <strong>15.7M+</strong>
+        <span>records analyzed in climate data work</span>
+      </article>
+
+      <article class="stat-card reveal">
+        <strong>$1.27M</strong>
+        <span>revenue analyzed in a global sales case study</span>
+      </article>
+
+      <article class="stat-card reveal">
+        <strong>203K+</strong>
+        <span>Bitcoin transactions investigated for structural risk patterns</span>
+      </article>
+
+      <article class="stat-card reveal">
+        <strong>7</strong>
+        <span>dimensions modeled in a retail banking warehouse</span>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     WHAT I DO
+========================== -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <span class="section-label">What I Work On</span>
+
+      <h2>
+        More than dashboards
+      </h2>
+
+      <p>
+        My work covers the analytical process behind the final
+        visualization—from structuring the data to interpreting what
+        the numbers mean.
+      </p>
+    </div>
+
+
+    <div class="grid-4">
+
+      <article class="card reveal">
+        <div class="card-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+
+        <h3>Business Intelligence</h3>
+
+        <p>
+          KPI reporting, sales analysis, operational performance,
+          executive dashboards, and decision-focused reporting.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">SQL</span>
+        </div>
+      </article>
+
+
+      <article class="card reveal">
+        <div class="card-icon">
+          <i class="fa-solid fa-database"></i>
+        </div>
+
+        <h3>Data Modeling</h3>
+
+        <p>
+          Relational data structures, fact and dimension modeling,
+          surrogate keys, and slowly changing dimensions.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">SQL</span>
+          <span class="tag">Star Schema</span>
+          <span class="tag">SCD</span>
+        </div>
+      </article>
+
+
+      <article class="card reveal">
+        <div class="card-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <h3>Risk & Investigative Analytics</h3>
+
+        <p>
+          Transaction analysis, behavioral patterns, graph-based
+          investigation, and risk indicators for financial data.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">Graph Analytics</span>
+          <span class="tag">Risk</span>
+        </div>
+      </article>
+
+
+      <article class="card reveal">
+        <div class="card-icon">
+          <i class="fa-solid fa-dna"></i>
+        </div>
+
+        <h3>Computational Research</h3>
+
+        <p>
+          Transcriptomic analysis, statistical modeling, survival
+          analysis, and computational approaches to biological data.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">GSEApy</span>
+          <span class="tag">Bioinformatics</span>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     FEATURED PROJECTS
+========================== -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-header section-header-row reveal">
+
+      <div>
+        <span class="section-label">Featured Work</span>
+
+        <h2>
+          Projects that show how I think
+        </h2>
+
+        <p>
+          A selection of work across business intelligence,
+          data modeling, risk analytics, and large-scale analysis.
+        </p>
+      </div>
+
+      <a href="projects.html" class="btn btn-ghost">
+        View All Projects
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </div>
+
+
+    <div class="project-grid">
+
+
+      <!-- NORTHWIND -->
+      <article class="project-card reveal">
+
+        <div class="project-image">
+          <img
+            src="assets/projects/northwind.png"
+            alt="Northwind Traders global sales and operations analysis dashboard"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="project-content">
+
+          <span class="project-category">
+            Business Intelligence
+          </span>
+
+          <h3>
+            Northwind Traders — Global Sales & Operations Analysis
+          </h3>
+
+          <p>
+            Interactive analysis of sales, products, employees,
+            shipping operations, and customer markets using relational
+            business data.
+          </p>
+
+          <div class="project-meta">
+            <span>$1.27M revenue</span>
+            <span>830 orders</span>
+            <span>Power BI</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="project-pages/northwind.html" class="btn btn-secondary">
+              Case Study
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- BITCOIN -->
+      <article class="project-card reveal">
+
+        <div class="project-image">
+          <img
+            src="assets/projects/bitcoin-fraud.png"
+            alt="Bitcoin transaction risk and compliance analysis"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="project-content">
+
+          <span class="project-category">
+            Risk & Investigative Analytics
+          </span>
+
+          <h3>
+            Bitcoin Transaction Risk & Compliance Analysis
+          </h3>
+
+          <p>
+            Graph-based investigation of Bitcoin transaction behavior,
+            identifying structurally high-risk nodes and suspicious
+            transaction patterns.
+          </p>
+
+          <div class="project-meta">
+            <span>203K+ transactions</span>
+            <span>5,459-node subgraph</span>
+            <span>Python</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="project-pages/bitcoin-risk.html" class="btn btn-secondary">
+              Case Study
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- CLIMATE -->
+      <article class="project-card reveal">
+
+        <div class="project-image">
+          <img
+            src="assets/projects/climate.png"
+            alt="Climate change sentiment intelligence dashboard"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="project-content">
+
+          <span class="project-category">
+            Business Intelligence
+          </span>
+
+          <h3>
+            Climate Change Sentiment Intelligence
+          </h3>
+
+          <p>
+            Large-scale analysis of climate-related social media
+            conversations, sentiment, stance, aggression, topics,
+            and geographic coverage.
+          </p>
+
+          <div class="project-meta">
+            <span>15.7M+ tweets</span>
+            <span>PostgreSQL</span>
+            <span>Power BI</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="project-pages/climate.html" class="btn btn-secondary">
+              Case Study
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PALLADIUM -->
+      <article class="project-card reveal">
+
+        <div class="project-image">
+          <img
+            src="assets/projects/palladium.png"
+            alt="Palladium Bank retail banking data warehouse model"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="project-content">
+
+          <span class="project-category">
+            Data Modeling
+          </span>
+
+          <h3>
+            Palladium Bank — Retail Banking Data Warehouse
+          </h3>
+
+          <p>
+            A dimensional data warehouse designed to structure
+            transaction-level banking activity for customer,
+            product, branch, and channel analysis.
+          </p>
+
+          <div class="project-meta">
+            <span>7 dimensions</span>
+            <span>SCD Type 2</span>
+            <span>SQL</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="project-pages/palladium.html" class="btn btn-secondary">
+              Case Study
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     EXPERIENCE PREVIEW
+========================== -->
+<section class="section">
+  <div class="container">
+
+    <div class="content-block reveal">
+
+      <div>
+        <span class="section-label">Experience</span>
+
+        <h2>
+          Applied analytics in a real business environment
+        </h2>
+
+        <p>
+          As a Data & Operations Analyst at Dylte Beauty & Wellness,
+          I work with sales, customer, marketing, and operational data
+          to support reporting, KPI tracking, and workflow analysis.
+        </p>
+      </div>
+
+      <a href="experience.html" class="btn btn-secondary">
+        View Experience
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     RESEARCH PREVIEW
+========================== -->
+<section class="section">
+  <div class="container">
+
+    <div class="content-block reveal">
+
+      <div>
+        <span class="section-label">Research</span>
+
+        <h2>
+          A second track: computational biology
+        </h2>
+
+        <p>
+          My research work applies computational and statistical
+          methods to biological datasets, particularly transcriptomic
+          analysis, ferroptosis, immune microenvironments, and
+          survival-related questions.
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">RNA-seq</span>
+          <span class="tag">GSEA</span>
+          <span class="tag">Survival Analysis</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <a href="research.html" class="btn btn-secondary">
+        Explore Research
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     FINAL CTA
+========================== -->
+<section class="section section-sm">
+  <div class="container">
+
+    <div class="content-block reveal">
+
+      <div>
+        <span class="section-label">Let's Connect</span>
+
+        <h2>
+          Looking for someone who can do more than build the dashboard?
+        </h2>
+
+        <p>
+          I’m interested in opportunities where analysis,
+          business context, and clear communication all matter.
+        </p>
+      </div>
+
+      <a href="contact.html" class="btn btn-primary">
+        Get In Touch
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+```
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="site-footer">
+
+```
+<div class="container-wide footer-inner">
+
+  <div class="footer-brand">
+
+    <a href="index.html" class="logo">
+      <span class="logo-mark">GA</span>
+      <span class="logo-text">Gloria Austin</span>
+    </a>
+
+    <p>
+      Business Intelligence • Data Analytics • Risk • Research
+    </p>
+
+  </div>
+
+
+  <div class="footer-links">
+
+    <a href="projects.html">Projects</a>
+    <a href="experience.html">Experience</a>
+    <a href="research.html">Research</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+
+  </div>
+
+
+  <div class="footer-social">
+
+    <a
+      href="https://github.com/gloriaufedo"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub"
+    >
+      <i class="fa-brands fa-github"></i>
+    </a>
+
+    <a
+      href="https://www.linkedin.com/in/gloria-austin-143334292/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn"
+    >
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+
+  </div>
+
+</div>
+
+
+<div class="container-wide footer-bottom">
+
+  <span>
+    © <span data-current-year></span> Gloria Austin. All rights reserved.
+  </span>
+
+  <span>
+    Built with HTML, CSS & JavaScript.
+  </span>
+
+</div>
+```
+
+  </footer>
