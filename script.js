@@ -1,4 +1,365 @@
-/* =========================================================
+/*
+    Gloria Austin Portfolio
+    Small vanilla JavaScript layer.
+
+    The site remains readable and navigable when JavaScript
+    is disabled.
+*/
+
+
+(() => {
+
+    "use strict";
+
+
+    /* =====================================================
+       SET JS-ENABLED STATE
+    ===================================================== */
+
+    document.documentElement.classList.add("js-enabled");
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        initTheme();
+        initMobileNavigation();
+        initReveal();
+        initCurrentYear();
+        initExternalLinks();
+
+    });
+
+
+    /* =====================================================
+       THEME
+    ===================================================== */
+
+    function initTheme() {
+
+        const toggle = document.getElementById("theme-toggle");
+
+        if (!toggle) {
+            return;
+        }
+
+
+        const storedTheme =
+            localStorage.getItem("gloria-theme");
+
+
+        if (storedTheme === "dark") {
+
+            document.documentElement.dataset.theme = "dark";
+
+            toggle.setAttribute(
+                "aria-pressed",
+                "true"
+            );
+
+        } else if (storedTheme === "light") {
+
+            document.documentElement.dataset.theme = "light";
+
+            toggle.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+
+        } else {
+
+            const prefersDark =
+                window.matchMedia(
+                    "(prefers-color-scheme: dark)"
+                ).matches;
+
+
+            if (prefersDark) {
+
+                document.documentElement.dataset.theme = "dark";
+
+                toggle.setAttribute(
+                    "aria-pressed",
+                    "true"
+                );
+
+            }
+
+        }
+
+
+        toggle.addEventListener("click", () => {
+
+            const isDark =
+                document.documentElement.dataset.theme === "dark";
+
+
+            if (isDark) {
+
+                document.documentElement.dataset.theme = "light";
+
+                localStorage.setItem(
+                    "gloria-theme",
+                    "light"
+                );
+
+                toggle.setAttribute(
+                    "aria-pressed",
+                    "false"
+                );
+
+            } else {
+
+                document.documentElement.dataset.theme = "dark";
+
+                localStorage.setItem(
+                    "gloria-theme",
+                    "dark"
+                );
+
+                toggle.setAttribute(
+                    "aria-pressed",
+                    "true"
+                );
+
+            }
+
+        });
+
+    }
+
+
+    /* =====================================================
+       MOBILE NAVIGATION
+    ===================================================== */
+
+    function initMobileNavigation() {
+
+        const toggle =
+            document.getElementById("menu-toggle");
+
+        const navigation =
+            document.getElementById("main-navigation");
+
+
+        if (!toggle || !navigation) {
+            return;
+        }
+
+
+        const closeMenu = () => {
+
+            navigation.classList.remove("is-open");
+
+            toggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        };
+
+
+        toggle.addEventListener("click", () => {
+
+            const isOpen =
+                navigation.classList.toggle("is-open");
+
+
+            toggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+        });
+
+
+        navigation
+            .querySelectorAll("a")
+            .forEach((link) => {
+
+                link.addEventListener(
+                    "click",
+                    closeMenu
+                );
+
+            });
+
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Escape" &&
+                    navigation.classList.contains("is-open")
+                ) {
+
+                    closeMenu();
+
+                    toggle.focus();
+
+                }
+
+            }
+        );
+
+
+        window.addEventListener(
+            "resize",
+            () => {
+
+                if (window.innerWidth > 760) {
+                    closeMenu();
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+
+    function initReveal() {
+
+        const elements =
+            document.querySelectorAll(".reveal");
+
+
+        if (!elements.length) {
+            return;
+        }
+
+
+        const reducedMotion =
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+
+        if (reducedMotion) {
+
+            elements.forEach((element) => {
+                element.classList.add("is-visible");
+            });
+
+            return;
+        }
+
+
+        if (!("IntersectionObserver" in window)) {
+
+            elements.forEach((element) => {
+                element.classList.add("is-visible");
+            });
+
+            return;
+        }
+
+
+        const observer =
+            new IntersectionObserver(
+                (entries, observerInstance) => {
+
+                    entries.forEach((entry) => {
+
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+
+                        entry.target.classList.add(
+                            "is-visible"
+                        );
+
+
+                        observerInstance.unobserve(
+                            entry.target
+                        );
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        elements.forEach((element) => {
+            observer.observe(element);
+        });
+
+    }
+
+
+    /* =====================================================
+       CURRENT YEAR
+    ===================================================== */
+
+    function initCurrentYear() {
+
+        const yearElements =
+            document.querySelectorAll(
+                "[data-current-year]"
+            );
+
+
+        const currentYear =
+            new Date().getFullYear();
+
+
+        yearElements.forEach((element) => {
+
+            element.textContent =
+                currentYear;
+
+        });
+
+    }
+
+
+    /* =====================================================
+       EXTERNAL LINKS
+    ===================================================== */
+
+    function initExternalLinks() {
+
+        const links =
+            document.querySelectorAll(
+                'a[target="_blank"]'
+            );
+
+
+        links.forEach((link) => {
+
+            const rel =
+                link.getAttribute("rel") || "";
+
+
+            const values =
+                new Set(
+                    rel
+                        .split(" ")
+                        .filter(Boolean)
+                );
+
+
+            values.add("noopener");
+            values.add("noreferrer");
+
+
+            link.setAttribute(
+                "rel",
+                Array.from(values).join(" ")
+            );
+
+        });
+
+    }
+
+})();/* =========================================================
 GLORIA AUSTIN — PORTFOLIO
 SHARED MULTI-PAGE JAVASCRIPT
 
