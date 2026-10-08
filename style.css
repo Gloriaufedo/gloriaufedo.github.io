@@ -674,14 +674,13 @@ strong {
     font-weight: 500;
 }
 
-```css
 /* =========================
    HERO PROFILE
 ========================= */
 
 .hero-profile {
     width: 100%;
-    max-width: 380px;
+    max-width: 440px;
     margin-left: auto;
 }
 
@@ -704,36 +703,33 @@ strong {
 }
 
 .profile-caption {
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
+    gap: 2px 10px;
     margin-top: 12px;
     padding: 0 2px;
 }
 
 .profile-caption-label {
-    grid-column: 1;
     color: var(--accent);
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .profile-caption strong {
-    grid-column: 2;
     font-size: 0.85rem;
     font-weight: 600;
 }
 
 .profile-caption > span:last-child {
-    grid-column: 1 / -1;
-    margin-top: 3px;
+    flex-basis: 100%;
     color: var(--text-muted);
     font-size: 0.78rem;
 }
 
-```css
 /* =========================
    HERO AT-A-GLANCE
 ========================= */
@@ -741,23 +737,41 @@ strong {
 .hero-profile .profile-card {
     width: 100%;
     margin-top: 20px;
+    padding: 20px;
 }
 
 .hero-profile .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
     margin-top: 16px;
 }
 
 .hero-profile .stat-card {
-    padding: 16px;
+    min-width: 0;              /* lets grid children shrink instead of overflowing */
+    padding: 14px 12px;
 }
 
 .hero-profile .stat-card strong {
     display: block;
     margin-bottom: 5px;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
 }
 
 .hero-profile .stat-card span {
     display: block;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+    .hero-profile {
+        max-width: 100%;
+        margin: 40px auto 0;
+    }
 }
 
 
