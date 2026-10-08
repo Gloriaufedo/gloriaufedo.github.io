@@ -1,918 +1,444 @@
-/*
-    Gloria Austin Portfolio
-    Small vanilla JavaScript layer.
-
-    The site remains readable and navigable when JavaScript
-    is disabled.
-*/
-
-
-(() => {
-
-    "use strict";
-
-
-    /* =====================================================
-       SET JS-ENABLED STATE
-    ===================================================== */
-
-    document.documentElement.classList.add("js-enabled");
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-
-        initTheme();
-        initMobileNavigation();
-        initReveal();
-        initCurrentYear();
-        initExternalLinks();
-
-    });
-
-
-    /* =====================================================
-       THEME
-    ===================================================== */
-
-    function initTheme() {
-
-        const toggle = document.getElementById("theme-toggle");
-
-        if (!toggle) {
-            return;
-        }
-
-
-        const storedTheme =
-            localStorage.getItem("gloria-theme");
-
-
-        if (storedTheme === "dark") {
-
-            document.documentElement.dataset.theme = "dark";
-
-            toggle.setAttribute(
-                "aria-pressed",
-                "true"
-            );
-
-        } else if (storedTheme === "light") {
-
-            document.documentElement.dataset.theme = "light";
-
-            toggle.setAttribute(
-                "aria-pressed",
-                "false"
-            );
-
-        } else {
-
-            const prefersDark =
-                window.matchMedia(
-                    "(prefers-color-scheme: dark)"
-                ).matches;
-
-
-            if (prefersDark) {
-
-                document.documentElement.dataset.theme = "dark";
-
-                toggle.setAttribute(
-                    "aria-pressed",
-                    "true"
-                );
-
-            }
-
-        }
-
-
-        toggle.addEventListener("click", () => {
-
-            const isDark =
-                document.documentElement.dataset.theme === "dark";
-
-
-            if (isDark) {
-
-                document.documentElement.dataset.theme = "light";
-
-                localStorage.setItem(
-                    "gloria-theme",
-                    "light"
-                );
-
-                toggle.setAttribute(
-                    "aria-pressed",
-                    "false"
-                );
-
-            } else {
-
-                document.documentElement.dataset.theme = "dark";
-
-                localStorage.setItem(
-                    "gloria-theme",
-                    "dark"
-                );
-
-                toggle.setAttribute(
-                    "aria-pressed",
-                    "true"
-                );
-
-            }
-
-        });
-
-    }
-
-
-    /* =====================================================
-       MOBILE NAVIGATION
-    ===================================================== */
-
-    function initMobileNavigation() {
-
-        const toggle =
-            document.getElementById("menu-toggle");
-
-        const navigation =
-            document.getElementById("main-navigation");
-
-
-        if (!toggle || !navigation) {
-            return;
-        }
-
-
-        const closeMenu = () => {
-
-            navigation.classList.remove("is-open");
-
-            toggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        };
-
-
-        toggle.addEventListener("click", () => {
-
-            const isOpen =
-                navigation.classList.toggle("is-open");
-
-
-            toggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-        });
-
-
-        navigation
-            .querySelectorAll("a")
-            .forEach((link) => {
-
-                link.addEventListener(
-                    "click",
-                    closeMenu
-                );
-
-            });
-
-
-        document.addEventListener(
-            "keydown",
-            (event) => {
-
-                if (
-                    event.key === "Escape" &&
-                    navigation.classList.contains("is-open")
-                ) {
-
-                    closeMenu();
-
-                    toggle.focus();
-
-                }
-
-            }
-        );
-
-
-        window.addEventListener(
-            "resize",
-            () => {
-
-                if (window.innerWidth > 760) {
-                    closeMenu();
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    function initReveal() {
-
-        const elements =
-            document.querySelectorAll(".reveal");
-
-
-        if (!elements.length) {
-            return;
-        }
-
-
-        const reducedMotion =
-            window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches;
-
-
-        if (reducedMotion) {
-
-            elements.forEach((element) => {
-                element.classList.add("is-visible");
-            });
-
-            return;
-        }
-
-
-        if (!("IntersectionObserver" in window)) {
-
-            elements.forEach((element) => {
-                element.classList.add("is-visible");
-            });
-
-            return;
-        }
-
-
-        const observer =
-            new IntersectionObserver(
-                (entries, observerInstance) => {
-
-                    entries.forEach((entry) => {
-
-                        if (!entry.isIntersecting) {
-                            return;
-                        }
-
-
-                        entry.target.classList.add(
-                            "is-visible"
-                        );
-
-
-                        observerInstance.unobserve(
-                            entry.target
-                        );
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        elements.forEach((element) => {
-            observer.observe(element);
-        });
-
-    }
-
-
-    /* =====================================================
-       CURRENT YEAR
-    ===================================================== */
-
-    function initCurrentYear() {
-
-        const yearElements =
-            document.querySelectorAll(
-                "[data-current-year]"
-            );
-
-
-        const currentYear =
-            new Date().getFullYear();
-
-
-        yearElements.forEach((element) => {
-
-            element.textContent =
-                currentYear;
-
-        });
-
-    }
-
-
-    /* =====================================================
-       EXTERNAL LINKS
-    ===================================================== */
-
-    function initExternalLinks() {
-
-        const links =
-            document.querySelectorAll(
-                'a[target="_blank"]'
-            );
-
-
-        links.forEach((link) => {
-
-            const rel =
-                link.getAttribute("rel") || "";
-
-
-            const values =
-                new Set(
-                    rel
-                        .split(" ")
-                        .filter(Boolean)
-                );
-
-
-            values.add("noopener");
-            values.add("noreferrer");
-
-
-            link.setAttribute(
-                "rel",
-                Array.from(values).join(" ")
-            );
-
-        });
-
-    }
-
-})();/* =========================================================
-GLORIA AUSTIN — PORTFOLIO
-SHARED MULTI-PAGE JAVASCRIPT
-
-Used across:
-
-* index.html
-* projects.html
-* experience.html
-* research.html
-* about.html
-* contact.html
-
-Page-specific JavaScript should be kept separate.
-========================================================= */
-
 /* =========================================================
-01. DOM READY
-========================================================= */
+   GLORIA AUSTIN — PORTFOLIO
+   Shared JavaScript for all pages
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-```
-initMobileMenu();
-initActiveNavigation();
-initThemeToggle();
-initNavbarScroll();
-initScrollReveal();
-initBackToTop();
-```
-
+    initMobileMenu();
+    initActiveNavigation();
+    initThemeToggle();
+    initNavbarScroll();
+    initScrollReveal();
+    initBackToTop();
+    initExternalLinks();
+    initCurrentYear();
+    initSmoothAnchors();
 });
 
+
 /* =========================================================
-02. MOBILE NAVIGATION
-========================================================= */
+   01. MOBILE NAVIGATION
+   ========================================================= */
 
 function initMobileMenu() {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const overlay = document.querySelector(".menu-overlay");
 
-```
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
-const menuOverlay = document.querySelector(".menu-overlay");
+    if (!menuToggle || !navLinks) return;
 
-if (!menuToggle || !navLinks) {
-    return;
+    const openMenu = () => {
+        menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute("aria-label", "Close navigation");
+
+        navLinks.classList.add("open");
+
+        if (overlay) {
+            overlay.classList.add("open");
+        }
+
+        document.body.style.overflow = "hidden";
+    };
+
+    const closeMenu = () => {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+
+        navLinks.classList.remove("open");
+
+        if (overlay) {
+            overlay.classList.remove("open");
+        }
+
+        document.body.style.overflow = "";
+    };
+
+    menuToggle.addEventListener("click", () => {
+        const isOpen =
+            menuToggle.getAttribute("aria-expanded") === "true";
+
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    if (overlay) {
+        overlay.addEventListener("click", closeMenu);
+    }
+
+    /* Close after selecting a navigation link */
+    navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+    });
+
+    /* Escape key closes the menu */
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeMenu();
+        }
+    });
+
+    /* Close mobile menu when returning to desktop */
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 900) {
+            closeMenu();
+        }
+    });
 }
 
-const menuIcon = menuToggle.querySelector("i");
-const navItems = navLinks.querySelectorAll("a");
-
-function openMenu() {
-
-    navLinks.classList.add("active");
-
-    if (menuOverlay) {
-        menuOverlay.classList.add("active");
-    }
-
-    menuToggle.setAttribute("aria-expanded", "true");
-
-    if (menuIcon) {
-        menuIcon.classList.remove("fa-bars");
-        menuIcon.classList.add("fa-xmark");
-    }
-
-    document.body.style.overflow = "hidden";
-}
-
-
-function closeMenu() {
-
-    navLinks.classList.remove("active");
-
-    if (menuOverlay) {
-        menuOverlay.classList.remove("active");
-    }
-
-    menuToggle.setAttribute("aria-expanded", "false");
-
-    if (menuIcon) {
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
-    }
-
-    document.body.style.overflow = "";
-}
-
-
-function toggleMenu() {
-
-    const isOpen = navLinks.classList.contains("active");
-
-    if (isOpen) {
-        closeMenu();
-    } else {
-        openMenu();
-    }
-
-}
-
-
-menuToggle.setAttribute("aria-expanded", "false");
-
-menuToggle.addEventListener("click", toggleMenu);
-
-
-if (menuOverlay) {
-
-    menuOverlay.addEventListener("click", closeMenu);
-
-}
-
-
-navItems.forEach(link => {
-
-    link.addEventListener("click", closeMenu);
-
-});
-
-
-document.addEventListener("keydown", event => {
-
-    if (event.key === "Escape") {
-        closeMenu();
-    }
-
-});
-
-
-window.addEventListener("resize", () => {
-
-    if (window.innerWidth > 900) {
-        closeMenu();
-    }
-
-});
-```
-
-}
 
 /* =========================================================
-03. ACTIVE PAGE NAVIGATION
-========================================================= */
-
-/*
-Each HTML page should have:
-
-```
-<body data-page="home">
-<body data-page="projects">
-<body data-page="experience">
-<body data-page="research">
-<body data-page="about">
-<body data-page="contact">
-
-And each navigation link should have:
-
-<a href="index.html" data-page-link="home">Home</a>
-```
-
-*/
+   02. ACTIVE NAVIGATION
+   ========================================================= */
 
 function initActiveNavigation() {
+    const currentPage = document.body.dataset.page;
 
-```
-const currentPage = document.body.dataset.page;
+    if (!currentPage) return;
 
-if (!currentPage) {
-    return;
+    document
+        .querySelectorAll("[data-page-link]")
+        .forEach((link) => {
+
+            const page = link.dataset.pageLink;
+
+            if (page === currentPage) {
+                link.classList.add("active");
+                link.setAttribute("aria-current", "page");
+            }
+        });
 }
 
-const navLinks = document.querySelectorAll("[data-page-link]");
-
-navLinks.forEach(link => {
-
-    const linkPage = link.dataset.pageLink;
-
-    if (linkPage === currentPage) {
-
-        link.classList.add("active");
-
-        link.setAttribute("aria-current", "page");
-
-    } else {
-
-        link.classList.remove("active");
-
-        link.removeAttribute("aria-current");
-
-    }
-
-});
-```
-
-}
 
 /* =========================================================
-04. DARK / LIGHT MODE
-========================================================= */
+   03. DARK / LIGHT THEME
+   ========================================================= */
 
 function initThemeToggle() {
+    const toggle = document.querySelector(".theme-toggle");
 
-```
-const toggle = document.querySelector(".theme-toggle");
+    if (!toggle) return;
 
-if (!toggle) {
-    return;
+    const savedTheme = localStorage.getItem("portfolio-theme");
+
+    if (savedTheme === "dark" || savedTheme === "light") {
+        setTheme(savedTheme);
+    } else {
+        const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
+
+        setTheme(prefersDark ? "dark" : "light");
+    }
+
+    toggle.addEventListener("click", () => {
+        const currentTheme =
+            document.documentElement.dataset.theme;
+
+        setTheme(
+            currentTheme === "dark"
+                ? "light"
+                : "dark"
+        );
+    });
 }
-
-const icon = toggle.querySelector("i");
 
 
 function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
 
-    if (theme === "light") {
+    localStorage.setItem(
+        "portfolio-theme",
+        theme
+    );
 
-        document.body.classList.add("light-mode");
+    updateThemeToggle(theme);
+}
 
-        if (icon) {
 
-            icon.classList.remove("fa-moon");
-            icon.classList.add("fa-sun");
+function updateThemeToggle(theme) {
+    const toggle = document.querySelector(".theme-toggle");
+    const icon = document.querySelector(".theme-icon");
 
-        }
+    if (!toggle) return;
 
-        toggle.setAttribute(
-            "aria-label",
-            "Switch to dark mode"
-        );
+    const isDark = theme === "dark";
 
-        toggle.setAttribute(
-            "title",
-            "Switch to dark mode"
-        );
+    toggle.setAttribute(
+        "aria-label",
+        isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+    );
 
-    } else {
+    toggle.setAttribute(
+        "title",
+        isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+    );
 
-        document.body.classList.remove("light-mode");
-
-        if (icon) {
-
-            icon.classList.remove("fa-sun");
-            icon.classList.add("fa-moon");
-
-        }
-
-        toggle.setAttribute(
-            "aria-label",
-            "Switch to light mode"
-        );
-
-        toggle.setAttribute(
-            "title",
-            "Switch to light mode"
-        );
-
+    if (icon) {
+        icon.textContent = isDark ? "☾" : "☼";
     }
-
 }
 
-
-const savedTheme = localStorage.getItem("theme");
-
-
-if (savedTheme === "light") {
-
-    setTheme("light");
-
-} else if (savedTheme === "dark") {
-
-    setTheme("dark");
-
-} else {
-
-    /*
-        If the visitor has never selected a theme,
-        respect their operating-system preference.
-    */
-
-    const prefersLight =
-        window.matchMedia &&
-        window.matchMedia(
-            "(prefers-color-scheme: light)"
-        ).matches;
-
-    setTheme(prefersLight ? "light" : "dark");
-
-}
-
-
-toggle.addEventListener("click", () => {
-
-    const isLight =
-        document.body.classList.contains("light-mode");
-
-    const newTheme = isLight ? "dark" : "light";
-
-    localStorage.setItem("theme", newTheme);
-
-    setTheme(newTheme);
-
-});
-```
-
-}
 
 /* =========================================================
-05. NAVBAR ON SCROLL
-========================================================= */
+   04. NAVBAR ON SCROLL
+   ========================================================= */
 
 function initNavbarScroll() {
+    const header = document.querySelector(".site-header");
 
-```
-const navbar = document.querySelector(".navbar");
+    if (!header) return;
 
-if (!navbar) {
-    return;
+    const updateHeader = () => {
+        if (window.scrollY > 20) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+    };
+
+    updateHeader();
+
+    window.addEventListener(
+        "scroll",
+        updateHeader,
+        { passive: true }
+    );
 }
 
-
-function updateNavbar() {
-
-    if (window.scrollY > 30) {
-
-        navbar.classList.add("scrolled");
-
-    } else {
-
-        navbar.classList.remove("scrolled");
-
-    }
-
-}
-
-
-window.addEventListener(
-    "scroll",
-    updateNavbar,
-    { passive: true }
-);
-
-
-updateNavbar();
-```
-
-}
 
 /* =========================================================
-06. SCROLL REVEAL
-========================================================= */
+   05. SCROLL REVEAL
+   ========================================================= */
 
 function initScrollReveal() {
+    const elements =
+        document.querySelectorAll(".reveal");
 
-```
-const elements = document.querySelectorAll(".reveal");
+    if (!elements.length) return;
 
-if (!elements.length) {
-    return;
-}
+    /* Respect reduced-motion preference */
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+        elements.forEach((element) => {
+            element.classList.add("is-visible");
+        });
 
-
-/*
-    Respect reduced-motion preferences.
-    If enabled, everything stays visible.
-*/
-
-const prefersReducedMotion =
-    window.matchMedia &&
-    window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-
-if (prefersReducedMotion) {
-
-    elements.forEach(element => {
-
-        element.classList.add("show");
-
-    });
-
-    return;
-
-}
-
-
-const revealObserver =
-    new IntersectionObserver(
-        (entries, observer) => {
-
-            entries.forEach(entry => {
-
-                if (!entry.isIntersecting) {
-                    return;
-                }
-
-                entry.target.classList.add("show");
-
-                observer.unobserve(entry.target);
-
-            });
-
-        },
-        {
-            threshold: 0.12,
-            rootMargin: "0px 0px -40px 0px"
-        }
-    );
-
-
-elements.forEach(element => {
-
-    revealObserver.observe(element);
-
-});
-```
-
-}
-
-/* =========================================================
-07. BACK TO TOP
-========================================================= */
-
-function initBackToTop() {
-
-```
-const button = document.querySelector(".back-to-top");
-
-if (!button) {
-    return;
-}
-
-
-function updateButton() {
-
-    if (window.scrollY > 500) {
-
-        button.classList.add("show");
-
-    } else {
-
-        button.classList.remove("show");
-
+        return;
     }
 
-}
+    const observer =
+        new IntersectionObserver(
+            (entries, observer) => {
 
+                entries.forEach((entry) => {
 
-window.addEventListener(
-    "scroll",
-    updateButton,
-    { passive: true }
-);
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
 
+                    entry.target.classList.add(
+                        "is-visible"
+                    );
 
-button.addEventListener("click", () => {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-});
-
-
-updateButton();
-```
-
-}
-
-/* =========================================================
-08. EXTERNAL LINKS
-========================================================= */
-
-/*
-External links open in a new tab only when they have:
-
-```
-target="_blank"
-
-This helper automatically adds the recommended
-security attributes.
-```
-
-*/
-
-function initExternalLinks() {
-
-```
-const externalLinks =
-    document.querySelectorAll(
-        'a[target="_blank"]'
-    );
-
-externalLinks.forEach(link => {
-
-    const existingRel =
-        link.getAttribute("rel") || "";
-
-    const relValues =
-        new Set(
-            existingRel
-                .split(" ")
-                .filter(Boolean)
+                    observer.unobserve(
+                        entry.target
+                    );
+                });
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -40px 0px"
+            }
         );
 
-    relValues.add("noopener");
-    relValues.add("noreferrer");
-
-    link.setAttribute(
-        "rel",
-        Array.from(relValues).join(" ")
-    );
-
-});
-```
-
+    elements.forEach((element) => {
+        observer.observe(element);
+    });
 }
 
-initExternalLinks();
 
 /* =========================================================
-09. IMAGE LOADING
-========================================================= */
+   06. BACK TO TOP
+   ========================================================= */
 
-/*
-Adds a loaded class when images finish loading.
-Useful for subtle image transitions later.
+function initBackToTop() {
+    let button =
+        document.querySelector(".back-to-top");
 
-```
-Images should have normal HTML alt text.
-```
+    /*
+     * The button isn't required in the HTML.
+     * Create it automatically if the page doesn't
+     * already contain one.
+     */
 
-*/
+    if (!button) {
+        button = document.createElement("button");
 
-function initImageLoading() {
+        button.type = "button";
+        button.className = "back-to-top";
+        button.setAttribute(
+            "aria-label",
+            "Back to top"
+        );
+        button.setAttribute(
+            "title",
+            "Back to top"
+        );
 
-```
-const images =
-    document.querySelectorAll("img");
+        button.innerHTML = "↑";
 
-if (!images.length) {
-    return;
+        document.body.appendChild(button);
+    }
+
+    const updateVisibility = () => {
+        if (window.scrollY > 500) {
+            button.classList.add("visible");
+        } else {
+            button.classList.remove("visible");
+        }
+    };
+
+    updateVisibility();
+
+    window.addEventListener(
+        "scroll",
+        updateVisibility,
+        { passive: true }
+    );
+
+    button.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 }
 
 
-images.forEach(image => {
+/* =========================================================
+   07. EXTERNAL LINKS
+   ========================================================= */
 
-    if (image.complete) {
+function initExternalLinks() {
+    const links =
+        document.querySelectorAll(
+            'a[target="_blank"]'
+        );
 
-        image.classList.add("loaded");
+    links.forEach((link) => {
 
-    } else {
+        const existingRel =
+            link.getAttribute("rel") || "";
+
+        const relValues =
+            new Set(
+                existingRel
+                    .split(" ")
+                    .filter(Boolean)
+            );
+
+        relValues.add("noopener");
+        relValues.add("noreferrer");
+
+        link.setAttribute(
+            "rel",
+            [...relValues].join(" ")
+        );
+    });
+}
+
+
+/* =========================================================
+   08. CURRENT YEAR
+   ========================================================= */
+
+function initCurrentYear() {
+    const year =
+        new Date().getFullYear();
+
+    document
+        .querySelectorAll("[data-current-year]")
+        .forEach((element) => {
+            element.textContent = year;
+        });
+}
+
+
+/* =========================================================
+   09. SAME-PAGE SMOOTH ANCHORS
+   ========================================================= */
+
+function initSmoothAnchors() {
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach((link) => {
+
+            link.addEventListener(
+                "click",
+                (event) => {
+
+                    const targetId =
+                        link.getAttribute("href");
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+                        return;
+                    }
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+                    if (!target) return;
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                    /*
+                     * Update URL without jumping.
+                     */
+                    history.pushState(
+                        null,
+                        "",
+                        targetId
+                    );
+                }
+            );
+        });
+}
+
+
+/* =========================================================
+   10. IMAGE LOADING
+   ========================================================= */
+
+function initImageLoading() {
+    const images =
+        document.querySelectorAll("img");
+
+    images.forEach((image) => {
+
+        if (image.complete) {
+            image.classList.add("loaded");
+            return;
+        }
 
         image.addEventListener(
             "load",
@@ -921,203 +447,56 @@ images.forEach(image => {
             },
             { once: true }
         );
-
-    }
-
-});
-```
-
-}
-
-initImageLoading();
-
-/* =========================================================
-10. CURRENT YEAR
-========================================================= */
-
-/*
-Add:
-
-```
-<span data-current-year></span>
-
-anywhere in the footer.
-
-The year will update automatically.
-```
-
-*/
-
-function initCurrentYear() {
-
-```
-const yearElements =
-    document.querySelectorAll(
-        "[data-current-year]"
-    );
-
-if (!yearElements.length) {
-    return;
-}
-
-
-const currentYear =
-    new Date().getFullYear();
-
-
-yearElements.forEach(element => {
-
-    element.textContent = currentYear;
-
-});
-```
-
-}
-
-initCurrentYear();
-
-/* =========================================================
-11. SMOOTH INTERNAL LINKS
-========================================================= */
-
-/*
-This is only for links to an anchor on the SAME page.
-
-```
-Multi-page navigation itself does NOT depend on
-scroll-position detection anymore.
-```
-
-*/
-
-function initInternalAnchors() {
-
-```
-const anchorLinks =
-    document.querySelectorAll(
-        'a[href^="#"]'
-    );
-
-anchorLinks.forEach(link => {
-
-    link.addEventListener("click", event => {
-
-        const targetId =
-            link.getAttribute("href");
-
-        if (
-            !targetId ||
-            targetId === "#"
-        ) {
-            return;
-        }
-
-
-        const target =
-            document.querySelector(targetId);
-
-        if (!target) {
-            return;
-        }
-
-
-        event.preventDefault();
-
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
     });
-
-});
-```
-
 }
 
-initInternalAnchors();
 
 /* =========================================================
-12. OPTIONAL HERO IMAGE PARALLAX
-========================================================= */
-
-/*
-Disabled by default.
-
-```
-To use it on a page, add:
-
-<div class="hero-image" data-parallax>
-    ...
-</div>
-
-It automatically respects reduced-motion settings.
-```
-
-*/
+   11. OPTIONAL PARALLAX
+   ========================================================= */
 
 function initParallax() {
+    const elements =
+        document.querySelectorAll(
+            "[data-parallax]"
+        );
 
-```
-const element =
-    document.querySelector("[data-parallax]");
+    if (!elements.length) return;
 
-if (!element) {
-    return;
-}
-
-
-const prefersReducedMotion =
-    window.matchMedia &&
-    window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-
-if (prefersReducedMotion) {
-    return;
-}
-
-
-let ticking = false;
-
-
-document.addEventListener("mousemove", event => {
-
-    if (ticking) {
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
         return;
     }
 
-    ticking = true;
+    window.addEventListener(
+        "scroll",
+        () => {
 
+            const scrollY =
+                window.scrollY;
 
-    requestAnimationFrame(() => {
+            elements.forEach((element) => {
 
-        const x =
-            (window.innerWidth / 2 - event.clientX)
-            / 80;
+                const speed =
+                    parseFloat(
+                        element.dataset.parallax
+                    ) || 0.08;
 
-        const y =
-            (window.innerHeight / 2 - event.clientY)
-            / 80;
-
-
-        element.style.transform =
-            `translate3d(${x}px, ${y}px, 0)`;
-
-
-        ticking = false;
-
-    });
-
-});
-```
-
+                element.style.transform =
+                    `translateY(${scrollY * speed}px)`;
+            });
+        },
+        { passive: true }
+    );
 }
 
-initParallax();
 
 /* =========================================================
-END OF SHARED JAVASCRIPT
-========================================================= */
+   12. INITIALIZE OPTIONAL FEATURES
+   ========================================================= */
+
+initImageLoading();
+initParallax();
