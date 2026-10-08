@@ -1,7 +1,20 @@
 /* =========================================================
-   GLORIA AUSTIN — PORTFOLIO
+   GLORIA AUSTIN | PORTFOLIO
    Shared JavaScript for all pages
    ========================================================= */
+
+const THEME_KEY = "portfolio-theme";
+const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
+
+
+/* =========================================================
+   00. THEME: APPLY EARLY
+   Runs as soon as the script loads, before DOMContentLoaded,
+   to reduce the light-theme flash in dark mode.
+   ========================================================= */
+
+document.documentElement.dataset.theme = getPreferredTheme();
+
 
 document.addEventListener("DOMContentLoaded", () => {
     initMobileMenu();
@@ -26,6 +39,9 @@ function initMobileMenu() {
     const overlay = document.querySelector(".menu-overlay");
 
     if (!menuToggle || !navLinks) return;
+
+    const isOpen = () =>
+        menuToggle.getAttribute("aria-expanded") === "true";
 
     const openMenu = () => {
         menuToggle.setAttribute("aria-expanded", "true");
@@ -54,10 +70,7 @@ function initMobileMenu() {
     };
 
     menuToggle.addEventListener("click", () => {
-        const isOpen =
-            menuToggle.getAttribute("aria-expanded") === "true";
-
-        if (isOpen) {
+        if (isOpen()) {
             closeMenu();
         } else {
             openMenu();
@@ -73,16 +86,17 @@ function initMobileMenu() {
         link.addEventListener("click", closeMenu);
     });
 
-    /* Escape key closes the menu */
+    /* Escape closes the menu and returns focus to the button */
     document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
+        if (event.key === "Escape" && isOpen()) {
             closeMenu();
+            menuToggle.focus();
         }
     });
 
     /* Close mobile menu when returning to desktop */
     window.addEventListener("resize", () => {
-        if (window.innerWidth > 900) {
+        if (window.innerWidth > 900 && isOpen()) {
             closeMenu();
         }
     });
@@ -102,9 +116,7 @@ function initActiveNavigation() {
         .querySelectorAll("[data-page-link]")
         .forEach((link) => {
 
-            const page = link.dataset.pageLink;
-
-            if (page === currentPage) {
+            if (link.dataset.pageLink === currentPage) {
                 link.classList.add("active");
                 link.setAttribute("aria-current", "page");
             }
@@ -114,47 +126,76 @@ function initActiveNavigation() {
 
 /* =========================================================
    03. DARK / LIGHT THEME
+   A saved choice always wins. Without one, the site follows
+   the system setting, including later changes to it.
    ========================================================= */
+
+function getStoredTheme() {
+    try {
+        const theme = localStorage.getItem(THEME_KEY);
+
+        return theme === "dark" || theme === "light"
+            ? theme
+            : null;
+    } catch (error) {
+        /* Storage can be blocked (private mode, strict settings) */
+        return null;
+    }
+}
+
+
+function storeTheme(theme) {
+    try {
+        localStorage.setItem(THEME_KEY, theme);
+    } catch (error) {
+        /* Ignore: the theme still applies for this visit */
+    }
+}
+
+
+function getPreferredTheme() {
+    const stored = getStoredTheme();
+
+    if (stored) return stored;
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+}
+
+
+function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+
+    updateThemeToggle(theme);
+}
+
 
 function initThemeToggle() {
     const toggle = document.querySelector(".theme-toggle");
 
+    applyTheme(getPreferredTheme());
+
     if (!toggle) return;
 
-    const savedTheme = localStorage.getItem("portfolio-theme");
-
-    if (savedTheme === "dark" || savedTheme === "light") {
-        setTheme(savedTheme);
-    } else {
-        const prefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        ).matches;
-
-        setTheme(prefersDark ? "dark" : "light");
-    }
-
     toggle.addEventListener("click", () => {
-        const currentTheme =
-            document.documentElement.dataset.theme;
-
-        setTheme(
-            currentTheme === "dark"
+        const nextTheme =
+            document.documentElement.dataset.theme === "dark"
                 ? "light"
-                : "dark"
-        );
+                : "dark";
+
+        applyTheme(nextTheme);
+        storeTheme(nextTheme);
     });
-}
 
-
-function setTheme(theme) {
-    document.documentElement.dataset.theme = theme;
-
-    localStorage.setItem(
-        "portfolio-theme",
-        theme
-    );
-
-    updateThemeToggle(theme);
+    /* Follow system changes until the visitor picks a theme */
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+            if (!getStoredTheme()) {
+                applyTheme(event.matches ? "dark" : "light");
+            }
+        });
 }
 
 
@@ -165,20 +206,16 @@ function updateThemeToggle(theme) {
     if (!toggle) return;
 
     const isDark = theme === "dark";
+    const label = isDark
+        ? "Switch to light mode"
+        : "Switch to dark mode";
 
-    toggle.setAttribute(
-        "aria-label",
-        isDark
-            ? "Switch to light mode"
-            : "Switch to dark mode"
-    );
+    toggle.setAttribute("aria-label", label);
+    toggle.setAttribute("title", label);
 
-    toggle.setAttribute(
-        "title",
-        isDark
-            ? "Switch to light mode"
-            : "Switch to dark mode"
-    );
+    /* The label already states the action, so a pressed state
+       would be announced twice. */
+    toggle.removeAttribute("aria-pressed");
 
     if (icon) {
         icon.textContent = isDark ? "☾" : "☼";
@@ -196,20 +233,12 @@ function initNavbarScroll() {
     if (!header) return;
 
     const updateHeader = () => {
-        if (window.scrollY > 20) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
+        header.classList.toggle("scrolled", window.scrollY > 20);
     };
 
     updateHeader();
 
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        { passive: true }
-    );
+    window.addEventListener("scroll", updateHeader, { passive: true });
 }
 
 
@@ -218,16 +247,15 @@ function initNavbarScroll() {
    ========================================================= */
 
 function initScrollReveal() {
-    const elements =
-        document.querySelectorAll(".reveal");
+    const elements = document.querySelectorAll(".reveal");
 
     if (!elements.length) return;
 
-    /* Respect reduced-motion preference */
+    /* Show everything immediately if motion is reduced or the
+       browser lacks IntersectionObserver, so nothing stays hidden */
     if (
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches
+        window.matchMedia(REDUCED_MOTION).matches ||
+        !("IntersectionObserver" in window)
     ) {
         elements.forEach((element) => {
             element.classList.add("is-visible");
@@ -236,30 +264,23 @@ function initScrollReveal() {
         return;
     }
 
-    const observer =
-        new IntersectionObserver(
-            (entries, observer) => {
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
 
-                entries.forEach((entry) => {
+            entries.forEach((entry) => {
 
-                    if (!entry.isIntersecting) {
-                        return;
-                    }
+                if (!entry.isIntersecting) return;
 
-                    entry.target.classList.add(
-                        "is-visible"
-                    );
+                entry.target.classList.add("is-visible");
 
-                    observer.unobserve(
-                        entry.target
-                    );
-                });
-            },
-            {
-                threshold: 0.12,
-                rootMargin: "0px 0px -40px 0px"
-            }
-        );
+                observer.unobserve(entry.target);
+            });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
 
     elements.forEach((element) => {
         observer.observe(element);
@@ -272,54 +293,36 @@ function initScrollReveal() {
    ========================================================= */
 
 function initBackToTop() {
-    let button =
-        document.querySelector(".back-to-top");
+    let button = document.querySelector(".back-to-top");
 
-    /*
-     * The button isn't required in the HTML.
-     * Create it automatically if the page doesn't
-     * already contain one.
-     */
-
+    /* Created automatically if the page doesn't include one */
     if (!button) {
         button = document.createElement("button");
 
         button.type = "button";
         button.className = "back-to-top";
-        button.setAttribute(
-            "aria-label",
-            "Back to top"
-        );
-        button.setAttribute(
-            "title",
-            "Back to top"
-        );
+        button.setAttribute("aria-label", "Back to top");
+        button.setAttribute("title", "Back to top");
 
-        button.innerHTML = "↑";
+        button.textContent = "↑";
 
         document.body.appendChild(button);
     }
 
     const updateVisibility = () => {
-        if (window.scrollY > 500) {
-            button.classList.add("visible");
-        } else {
-            button.classList.remove("visible");
-        }
+        button.classList.toggle("visible", window.scrollY > 500);
     };
 
     updateVisibility();
 
-    window.addEventListener(
-        "scroll",
-        updateVisibility,
-        { passive: true }
-    );
+    window.addEventListener("scroll", updateVisibility, { passive: true });
 
     button.addEventListener("click", () => {
         window.scrollTo({
             top: 0,
-            behavior: "smooth"
+            behavior: window.matchMedia(REDUCED_MOTION).matches
+                ? "auto"
+                : "smooth"
         });
     });
 }
@@ -330,31 +333,21 @@ function initBackToTop() {
    ========================================================= */
 
 function initExternalLinks() {
-    const links =
-        document.querySelectorAll(
-            'a[target="_blank"]'
-        );
+    document
+        .querySelectorAll('a[target="_blank"]')
+        .forEach((link) => {
 
-    links.forEach((link) => {
-
-        const existingRel =
-            link.getAttribute("rel") || "";
-
-        const relValues =
-            new Set(
-                existingRel
+            const relValues = new Set(
+                (link.getAttribute("rel") || "")
                     .split(" ")
                     .filter(Boolean)
             );
 
-        relValues.add("noopener");
-        relValues.add("noreferrer");
+            relValues.add("noopener");
+            relValues.add("noreferrer");
 
-        link.setAttribute(
-            "rel",
-            [...relValues].join(" ")
-        );
-    });
+            link.setAttribute("rel", [...relValues].join(" "));
+        });
 }
 
 
@@ -363,8 +356,7 @@ function initExternalLinks() {
    ========================================================= */
 
 function initCurrentYear() {
-    const year =
-        new Date().getFullYear();
+    const year = new Date().getFullYear();
 
     document
         .querySelectorAll("[data-current-year]")
@@ -376,6 +368,8 @@ function initCurrentYear() {
 
 /* =========================================================
    09. SAME-PAGE SMOOTH ANCHORS
+   Also moves keyboard focus to the target, which makes the
+   "Skip to main content" link work.
    ========================================================= */
 
 function initSmoothAnchors() {
@@ -383,120 +377,42 @@ function initSmoothAnchors() {
         .querySelectorAll('a[href^="#"]')
         .forEach((link) => {
 
-            link.addEventListener(
-                "click",
-                (event) => {
+            link.addEventListener("click", (event) => {
 
-                    const targetId =
-                        link.getAttribute("href");
+                const href = link.getAttribute("href");
 
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
+                if (!href || href === "#") return;
 
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
+                let id = href.slice(1);
 
-                    if (!target) return;
-
-                    event.preventDefault();
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                    /*
-                     * Update URL without jumping.
-                     */
-                    history.pushState(
-                        null,
-                        "",
-                        targetId
-                    );
+                try {
+                    id = decodeURIComponent(id);
+                } catch (error) {
+                    /* Keep the raw id if it can't be decoded */
                 }
-            );
+
+                const target = document.getElementById(id);
+
+                if (!target) return;
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: window.matchMedia(REDUCED_MOTION).matches
+                        ? "auto"
+                        : "smooth",
+                    block: "start"
+                });
+
+                /* Non-interactive elements need tabindex to take focus */
+                if (!target.hasAttribute("tabindex")) {
+                    target.setAttribute("tabindex", "-1");
+                }
+
+                target.focus({ preventScroll: true });
+
+                /* Update the URL without jumping */
+                history.pushState(null, "", href);
+            });
         });
 }
-
-
-/* =========================================================
-   10. IMAGE LOADING
-   ========================================================= */
-
-function initImageLoading() {
-    const images =
-        document.querySelectorAll("img");
-
-    images.forEach((image) => {
-
-        if (image.complete) {
-            image.classList.add("loaded");
-            return;
-        }
-
-        image.addEventListener(
-            "load",
-            () => {
-                image.classList.add("loaded");
-            },
-            { once: true }
-        );
-    });
-}
-
-
-/* =========================================================
-   11. OPTIONAL PARALLAX
-   ========================================================= */
-
-function initParallax() {
-    const elements =
-        document.querySelectorAll(
-            "[data-parallax]"
-        );
-
-    if (!elements.length) return;
-
-    if (
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches
-    ) {
-        return;
-    }
-
-    window.addEventListener(
-        "scroll",
-        () => {
-
-            const scrollY =
-                window.scrollY;
-
-            elements.forEach((element) => {
-
-                const speed =
-                    parseFloat(
-                        element.dataset.parallax
-                    ) || 0.08;
-
-                element.style.transform =
-                    `translateY(${scrollY * speed}px)`;
-            });
-        },
-        { passive: true }
-    );
-}
-
-
-/* =========================================================
-   12. INITIALIZE OPTIONAL FEATURES
-   ========================================================= */
-
-initImageLoading();
-initParallax();
