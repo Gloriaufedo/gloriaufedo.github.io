@@ -1113,6 +1113,208 @@
 
 </main>
 
+<!-- FEATURED CASE STUDY: DYLTE WEARS -->
+<section class="section" id="dylte-wears-case-study">
+
+    <div class="section-header reveal">
+        <p class="section-label">FEATURED CASE STUDY</p>
+        <h2>Dylte Wears: Sales Validation &amp; Inventory Reconciliation</h2>
+        <p>
+            Designing a safer retail data workflow that identifies unreliable
+            sales records, routes uncertainty for review, and prevents
+            unverified sales from automatically affecting inventory balances.
+        </p>
+    </div>
+
+    <!-- Project overview -->
+    <div class="grid-3">
+
+        <article class="card reveal">
+            <p class="section-label">THE PROBLEM</p>
+            <h3>Unreliable sales records</h3>
+            <p>
+                Missing SKUs, inconsistent product descriptions, ambiguous
+                sizes, incomplete quantities, and conflicting details can
+                make it difficult to identify the correct product and update
+                inventory reliably.
+            </p>
+        </article>
+
+        <article class="card reveal">
+            <p class="section-label">THE APPROACH</p>
+            <h3>Validate before updating stock</h3>
+            <p>
+                A Python and pandas workflow checks sales records, matches
+                product identifiers and aliases, flags uncertain cases,
+                and applies additional eligibility and approval checks before
+                a sales movement can enter the inventory reconciliation stage.
+            </p>
+        </article>
+
+        <article class="card reveal">
+            <p class="section-label">THE DESIGN PRINCIPLE</p>
+            <h3>Uncertainty should be visible</h3>
+            <p>
+                The workflow does not force a match when evidence is
+                insufficient. Uncertain or conflicting records are routed
+                for review instead of being silently accepted.
+            </p>
+        </article>
+
+    </div>
+
+    <!-- Measured results -->
+    <div class="section-header reveal">
+        <p class="section-label">TEST RESULTS</p>
+        <h3>What the prototype demonstrated</h3>
+        <p>
+            Results from a controlled workflow using synthetic retail data.
+            These figures are test outcomes, not measured improvements from
+            live business operations.
+        </p>
+    </div>
+
+    <div class="grid-3">
+
+        <article class="card reveal">
+            <p class="section-label">SALES MOVEMENTS EVALUATED</p>
+            <h3>338</h3>
+            <p>
+                Sales movements passed through the integrated eligibility
+                checks.
+            </p>
+        </article>
+
+        <article class="card reveal">
+            <p class="section-label">ELIGIBLE TO PROCEED</p>
+            <h3>56</h3>
+            <p>
+                Movements passed the required validation, product,
+                quantity, and approval checks.
+            </p>
+        </article>
+
+        <article class="card reveal">
+            <p class="section-label">ROUTED FOR REVIEW</p>
+            <h3>282</h3>
+            <p>
+                Movements were not eligible to proceed automatically and
+                required further review.
+            </p>
+        </article>
+
+    </div>
+
+    <!-- Workflow -->
+    <div class="section-header reveal">
+        <p class="section-label">HOW IT WORKS</p>
+        <h3>From raw sales data to controlled inventory updates</h3>
+    </div>
+
+    <div class="grid-3">
+
+        <article class="card reveal">
+            <h3>01. Validate sales</h3>
+            <p>
+                Check required fields, product identifiers, descriptions,
+                quantities, and conflicting information. Assign validation
+                outcomes and reasons for review.
+            </p>
+        </article>
+
+        <article class="card reveal">
+            <h3>02. Check eligibility</h3>
+            <p>
+                Link validation results to sales movements and verify
+                product matching, quantity consistency, and approval
+                conditions before allowing a movement to proceed.
+            </p>
+        </article>
+
+        <article class="card reveal">
+            <h3>03. Reconcile inventory</h3>
+            <p>
+                Apply eligible movements, check stock constraints, retain
+                an audit trail, and produce inventory balances alongside
+                movement records requiring review.
+            </p>
+        </article>
+
+    </div>
+
+    <!-- Technical implementation -->
+    <div class="grid-3">
+
+        <article class="card reveal">
+            <p class="section-label">TECH STACK</p>
+            <h3>Tools and implementation</h3>
+
+            <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">pandas</span>
+                <span class="tag">CSV Workflows</span>
+                <span class="tag">pytest</span>
+                <span class="tag">Excel</span>
+            </div>
+
+            <p>
+                Deterministic matching and validation rules, structured
+                review queues, inventory movement checks, and automated
+                regression tests.
+            </p>
+        </article>
+
+        <article class="card reveal">
+            <p class="section-label">VERIFICATION</p>
+            <h3>27 automated tests passed</h3>
+            <p>
+                The test suite checked expected workflow behavior and
+                important edge cases. The controlled inventory fixture
+                also matched expected balances for all 300 products with
+                known opening stock.
+            </p>
+        </article>
+
+        <article class="card reveal">
+            <p class="section-label">ENGINEERING DECISION</p>
+            <h3>Rules before AI</h3>
+            <p>
+                The prototype uses explicit rules rather than generative AI
+                because product identity, quantities, and stock movements
+                need auditable decisions. Ambiguous records are held for
+                human review rather than guessed.
+            </p>
+        </article>
+
+    </div>
+
+    <!-- Limitations -->
+    <article class="card reveal">
+        <p class="section-label">LIMITATIONS &amp; NEXT STEPS</p>
+        <h3>A tested prototype, not a production deployment</h3>
+        <p>
+            The data is synthetic, so the results do not establish real-world
+            matching accuracy, time savings, or business impact. The next
+            stage would be to test the workflow against approved, sanitized
+            business records, evaluate matching quality, and refine review
+            rules before considering a live deployment.
+        </p>
+    </article>
+
+    <!-- Links -->
+    <div class="project-actions reveal">
+        <a
+            href="https://github.com/Gloriaufedo/dylte-wears-automation"
+            class="text-link"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Explore the code and documentation →
+        </a>
+    </div>
+
+</section>
+<!-- END FEATURED CASE STUDY -->
 
 
 <!-- =========================
